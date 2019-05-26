@@ -18,27 +18,38 @@ function familyTreeRecursive({
     depth=0, currentChain=[],
     currentalgo={totaldone:0, currentmax:0, errors:0}}={}) {
     currentalgo.currentmax++;
-    $.get("/tree-data/person/" + from + "/card?&stillbornDataProblemEx=true&matchUsesTreeHintEx=true"
-    ).done(function (infolocal) {
-            $.get("/tree-data/family-members/person/" + from).done(function (fullinfo) {
+    fetch("/tree-data/person/" + from + "/card?&stillbornDataProblemEx=true&matchUsesTreeHintEx=true"
+    )
+    .then(response => {
+        return response.json();
+    })
+    .then(function (infolocal) {
+        fetch("/tree-data/family-members/person/" + from).then(response => {
+                return response.json();
+            }).then(function (fullinfo) {
                 callback({depth:depth, from:from, infolocal:infolocal, fullinfo:fullinfo, chain:currentChain});
                 if (depth < depthmax && fullinfo.data.parents) {
                     for (var i=0; i < fullinfo.data.parents.length; i++) {
                         // new chain in order to tell we are in a father
                         var newChain = currentChain.slice(0);
                         newChain.push({id:from, name:infolocal.name, nextisfather:true});
-                        var arguments = {callback:callback, from:fullinfo.data.parents[i].husband.id, depthmax:depthmax, callbackEnd:callbackEnd, currentChain:newChain, depth:depth+1, currentalgo:currentalgo};
-                        familyTreeRecursive(arguments);
-                        // new parameters in order to tell we are in a mother
-                        arguments.from = fullinfo.data.parents[i].wife.id
-                        arguments.currentChain = newChain = currentChain.slice(0);
-                        newChain.push({id:from, name:infolocal.name, nextisfather:false});
-                        familyTreeRecursive(arguments);
+                        var arguments = {callback:callback, depthmax:depthmax, callbackEnd:callbackEnd, currentChain:newChain, depth:depth+1, currentalgo:currentalgo};
+                        if (typeof fullinfo.data.parents[i].husband != "undefined") {
+                            arguments.from = fullinfo.data.parents[i].husband.id;
+                            familyTreeRecursive(arguments);
+                        }
+                        if (typeof fullinfo.data.parents[i].wife != "undefined") {
+                            // new parameters in order to tell we are in a mother
+                            arguments.from = fullinfo.data.parents[i].wife.id;
+                            arguments.currentChain = newChain = currentChain.slice(0);
+                            newChain.push({id:from, name:infolocal.name, nextisfather:false});
+                            familyTreeRecursive(arguments);
+                        }
                     }
                 }
-            }).fail(function() {
+            }).catch(function() {
                 currentalgo.errors++;
-            }).always(function() {
+            }).finally(function() {
                 currentalgo.totaldone++;
                 if (currentalgo.totaldone == currentalgo.currentmax) {
                     console.log("Ended, " + currentalgo.totaldone + " visited, "+currentalgo.errors+" errors.");
@@ -46,7 +57,7 @@ function familyTreeRecursive({
                 }
             });
         }
-    ).fail(function() {
+    ).catch(function(err) {
         currentalgo.currentmax--;
         currentalgo.errors++;
         if (currentalgo.totaldone == currentalgo.currentmax) {
