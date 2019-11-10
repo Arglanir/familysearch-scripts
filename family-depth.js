@@ -6,6 +6,7 @@ var nbStillParents = 0;
 var nbFinish = 0;
 var depthMax = 0;
 var result = {}; // depth => [{name, date, id}], with one special "notended"
+var maxDepthFound = 0;
 function getAllFamilyTreeEnds({depth=0, from='UNKNOWN', infolocal={}, fullinfo={}, chain=[]}={}) {
     if (fullinfo.data.parents.length == 0) {
         // finish
@@ -14,9 +15,12 @@ function getAllFamilyTreeEnds({depth=0, from='UNKNOWN', infolocal={}, fullinfo={
         if (conclusion) {
             onedate = conclusion.details.date.formalText.split("-")[0];
         } 
-        console.log("Depth " + depth + ", name: " + infolocal.name + onedate + ", id:" + from);
+        console.log("Depth " + depth + ", name: " + infolocal.name + " " + onedate + ", id:" + from);
         if (!result[depth]) {
             result[depth] = [];
+        }
+        if (maxDepthFound < depth) {
+            maxDepthFound = depth;
         }
         result[depth].push({name: infolocal.name, date: onedate, id: from});
         nbFinish += 1;
@@ -33,10 +37,14 @@ function computeDepth({from=document.location.pathname.split("/").pop(), depthma
     nbStillParents = 0;
     nbFinish = 0;
     depthMax = depthmax;
+    maxDepthFound = 0;
     result = {};
-    familyTreeRecursive({callback:getAllFamilyTreeEnds, from:from, depthmax:depthmax, callbackEnd:function(){console.log("Lines terminated: " + nbFinish + ", still with parents: " + nbStillParents);}});
+    familyTreeRecursive({callback:getAllFamilyTreeEnds, from:from, depthmax:depthmax, callbackEnd:function(){
+        console.log("Lines terminated: " + nbFinish + ", still with parents: " + nbStillParents);
+        console.log("Max depth found: " + maxDepthFound);
+    }});
 }
 
-computeDepth({depthmax:15});
+computeDepth({depthmax:20});
 
 // the end results will be displayed, and at the end, you have the results in the "result" object

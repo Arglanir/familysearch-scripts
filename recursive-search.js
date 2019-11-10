@@ -1,6 +1,24 @@
 /**
  *   This function allows you to get information from your family tree, recursively
  */
+
+var objectId = (function () {
+    var allObjects = [];
+
+    var f = function(obj) {
+        var i = allObjects.indexOf(obj);
+        if (i === -1) {
+            allObjects.push(obj);
+            i = allObjects.indexOf(obj);
+        }
+        return i;
+    }
+    f.clear = function() {
+      allObjects = [];
+    };
+    return f;
+})();
+ 
 function familyTreeRecursive({
     // public parameters
     // @param callback: function({depth, from, infolocal, fullinfo})
@@ -10,7 +28,7 @@ function familyTreeRecursive({
     callback=function(){{depth=0, from='UNKNOWN', infolocal={}, fullinfo={}, chain=[]}},
     from=getCurrentId(),
     depthmax=10,
-    callbackEnd=function({visited=0, errors=0}){},
+    callbackEnd=function({visited=0, errors=0}){console.log("Default ended method");},
     // private parameters
     // @param depth: the current depth
     // @param currentChain: the current chain to the current 'from' (not included) [{id, name, nextisfather}]
@@ -18,6 +36,7 @@ function familyTreeRecursive({
     depth=0, currentChain=[],
     currentalgo={totaldone:0, currentmax:0, errors:0}}={}) {
     currentalgo.currentmax++;
+    //console.log("After call:" + from + " " + objectId(currentalgo));
     fetch("/tree-data/person/" + from + "/card?&stillbornDataProblemEx=true&matchUsesTreeHintEx=true"
     )
     .then(response => {
@@ -30,12 +49,17 @@ function familyTreeRecursive({
                 callback({depth:depth, from:from, infolocal:infolocal, fullinfo:fullinfo, chain:currentChain});
                 if (depth < depthmax && fullinfo.data.parents) {
                     for (var i=0; i < fullinfo.data.parents.length; i++) {
+                        //console.log("In "+from+", parent " + i)
+                        //console.log(fullinfo.data.parents[i]);
                         // new chain in order to tell we are in a father
                         var newChain = currentChain.slice(0);
                         newChain.push({id:from, name:infolocal.name, nextisfather:true});
                         var arguments = {callback:callback, depthmax:depthmax, callbackEnd:callbackEnd, currentChain:newChain, depth:depth+1, currentalgo:currentalgo};
+                        //console.log("Before any call:" + from + " " + objectId(currentalgo) + " " + objectId(arguments.currentalgo));
+                        // checking father (husband of couple)
                         if (typeof fullinfo.data.parents[i].husband != "undefined") {
                             arguments.from = fullinfo.data.parents[i].husband.id;
+                            //console.log("Before call1:" + arguments.from + " " + objectId(currentalgo) + " " + objectId(arguments.currentalgo));
                             familyTreeRecursive(arguments);
                         }
                         if (typeof fullinfo.data.parents[i].wife != "undefined") {
@@ -43,8 +67,24 @@ function familyTreeRecursive({
                             arguments.from = fullinfo.data.parents[i].wife.id;
                             arguments.currentChain = newChain = currentChain.slice(0);
                             newChain.push({id:from, name:infolocal.name, nextisfather:false});
+                            arguments.currentalgo = currentalgo;
+                            //console.log("Before call2:" + arguments.from + " " + objectId(currentalgo));
                             familyTreeRecursive(arguments);
                         }
+                        ["spouse1", "spouse2"].forEach(function (attr) {
+                            if (typeof fullinfo.data.parents[i][attr] != "undefined") {
+                                // new parameters in order to tell we are in a mother or father
+                                var arguments = {callback:callback, depthmax:depthmax, callbackEnd:callbackEnd, currentChain:newChain, depth:depth+1, currentalgo:currentalgo};
+                                var attrvalue = fullinfo.data.parents[i][attr];
+                                arguments.from = attrvalue.id;
+                                if (arguments.from == "UNKNOWN") return;
+                                arguments.currentChain = newChain = currentChain.slice(0);
+                                arguments.currentalgo = currentalgo;
+                                newChain.push({id:from, name:infolocal.name, nextisfather:attrvalue.gender == "MALE"});
+                                //console.log("Before call3:" + arguments.from + " " + objectId(currentalgo) + " " + objectId(arguments.currentalgo));
+                                familyTreeRecursive(arguments);
+                            }
+                        });
                     }
                 }
             }).catch(function() {
