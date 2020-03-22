@@ -14,8 +14,13 @@ function getAllFamilyTreeEnds({depth=0, from='UNKNOWN', infolocal={}, fullinfo={
         var conclusion = infolocal.birthlikeConclusion ? infolocal.birthlikeConclusion : infolocal.deathlikeConclusion;
         if (conclusion) {
             onedate = conclusion.details.date.formalText.split("-")[0];
-        } 
-        console.log("Depth " + depth + ", name: " + infolocal.name + " " + onedate + ", id:" + from);
+        }
+        var chains = []
+        chain.forEach(function({id="", name="", nextisfather=true}){
+            chains.push(nextisfather ? "F" : "M");
+        });
+        console.log("Depth " + depth + ", name: " + infolocal.name + " " + onedate + ", id:" + from +
+        ", link: " + chains.join('>'));
         if (!result[depth]) {
             result[depth] = [];
         }
