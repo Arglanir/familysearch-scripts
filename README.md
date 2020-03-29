@@ -2,7 +2,7 @@
 Scripts useful when working with [FamilySearch](https://www.familysearch.org/)
 
 ## Usage
-Open FamilySearch, log in, then navigate to the page of one person, like yourself (or an ancestor for [family-lines-down.js](family-lines-down.js))
+Open FamilySearch, log in, then navigate to the page of one person, like [yourself](https://www.familysearch.org/tree/person)
 
 In a javascript console, copy/paste the content of [recursive-search.js](recursive-search.js), then you can copy/paste one of the following scripts:
 
