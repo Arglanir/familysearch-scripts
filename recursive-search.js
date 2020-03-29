@@ -182,6 +182,17 @@ function familyTreeGetDown({
 }
 
 
+function getDates(infolocal) {
+    function getDate(conclusion) {
+        if (conclusion && conclusion.details && conclusion.details.date && conclusion.details.date.formalText) {
+            return conclusion.details.date.formalText.split("-")[0]; // year only
+        }
+        return "?";
+    }
+    return getDate(infolocal.birthlikeConclusion ? infolocal.birthlikeConclusion : infolocal.birth) + "-"+
+        getDate(infolocal.deathlikeConclusion ? infolocal.deathlikeConclusion : infolocal.death);
+}
+
 /**
  *  Returns the current id of the page (XXXX-YYY)
  */

@@ -23,13 +23,10 @@ function readChain(chain) {
  */
 function computeNumberOfDescendantsCallback({depth=0, from='UNKNOWN', infolocal={}, fullinfo={}, chain=[]}={}) {
     // compute a date
-    var onedate = "-";
-    var conclusion = infolocal.birthlikeConclusion ? infolocal.birthlikeConclusion : infolocal.deathlikeConclusion;
-    if (conclusion) {
-        onedate = conclusion.details.date.formalText.split("-")[0];
-    }
+    var onedate = getDates(infolocal);
+    var line = readChain(chain);
     // display
-    console.log(`${depth}: ${infolocal.name} ${onedate} (${descendantsAtEachDepth.length})`);
+    console.log(`${depth}: ${infolocal.name} https://www.familysearch.org/tree/person/details/${infolocal.id} ${onedate} (${line})`);
     // keep track
     numberOfDescendants += 1;
     descendantsDepth = depth > descendantsDepth ? depth : descendantsDepth;
@@ -40,7 +37,10 @@ function computeNumberOfDescendantsCallback({depth=0, from='UNKNOWN', infolocal=
     if (!linesAtEachDepth[depth]) {
         linesAtEachDepth[depth]={};
     }
-    linesAtEachDepth[depth][readChain(chain)] = 1;
+    if (!linesAtEachDepth[depth][line]) {
+        linesAtEachDepth[depth][line]=0;
+    }
+    linesAtEachDepth[depth][line] += 1;
 }
 /**
  *  Main method for this script
@@ -56,9 +56,9 @@ function computeNumberOfDescendants({from=getCurrentId(), depthmax=50}={}) {
         console.log("Number of descendants: " + numberOfDescendants);
         console.log("Max depth found: " + descendantsDepth);
         for (var i = 0; i < descendantsAtEachDepth.length; i++) {
-            console.log(`  At depth ${i}: ${descendantsAtEachDepth[i]}`);
+            console.log(`At depth ${i}: ${descendantsAtEachDepth[i]}`);
             for (var line in linesAtEachDepth[i]) {
-                console.log(`  Lines: ${line}`);
+                console.log(`  Lines: ${line} : ${linesAtEachDepth[i][line]}`);
             }
         }
     }});
