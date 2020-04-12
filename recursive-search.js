@@ -41,7 +41,7 @@ function familyTreeRecursive({
     // @param depth: the current depth
     // @param currentChain: the current chain to the current 'from' (not included) [{id, name, nextisfather}]
     // @param currentalgo: shared parameters for the current process
-    depth=0, currentChain=[],
+    depth=0, currentChain=[], shareddata={},
     currentalgo={totaldone:0, currentmax:0, errors:0}}={}) {
     currentalgo.currentmax++;
     //console.log("After call:" + from + " " + objectId(currentalgo));
@@ -54,7 +54,11 @@ function familyTreeRecursive({
         fetch(familyTreeRecursive_urlComplete(from)).then(response => {
                 return response.json();
             }).then(function (fullinfo) {
-                callback({depth:depth, from:from, infolocal:infolocal, fullinfo:fullinfo, chain:currentChain});
+                var command = callback({depth:depth, from:from, infolocal:infolocal, fullinfo:fullinfo, chain:currentChain, shareddata:shareddata});
+                if (command == "stop") {
+                    // do not go deeper
+                    return;
+                }
                 if (depth < depthmax && fullinfo.data.parents) {
                     for (var i=0; i < fullinfo.data.parents.length; i++) {
                         //console.log("In "+from+", parent " + i)
@@ -62,7 +66,7 @@ function familyTreeRecursive({
                         // new chain in order to tell we are in a father
                         var newChain = currentChain.slice(0);
                         newChain.push({id:from, name:infolocal.name, nextisfather:true});
-                        var arguments = {callback:callback, depthmax:depthmax, callbackEnd:callbackEnd, currentChain:newChain, depth:depth+1, currentalgo:currentalgo};
+                        var arguments = {callback:callback, depthmax:depthmax, callbackEnd:callbackEnd, currentChain:newChain, depth:depth+1, currentalgo:currentalgo, shareddata};
                         //console.log("Before any call:" + from + " " + objectId(currentalgo) + " " + objectId(arguments.currentalgo));
                         // checking father (husband of couple)
                         if (typeof fullinfo.data.parents[i].husband != "undefined") {
@@ -101,7 +105,7 @@ function familyTreeRecursive({
                 currentalgo.totaldone++;
                 if (currentalgo.totaldone == currentalgo.currentmax) {
                     console.log("Ended, " + currentalgo.totaldone + " visited, "+currentalgo.errors+" errors.");
-                    callbackEnd({visited:currentalgo.totaldone, errors:currentalgo.errors})
+                    callbackEnd({visited:currentalgo.totaldone, errors:currentalgo.errors, shareddata:shareddata})
                 }
             });
         }
@@ -110,7 +114,7 @@ function familyTreeRecursive({
         currentalgo.errors++;
         if (currentalgo.totaldone == currentalgo.currentmax) {
             console.log("Ended, " + currentalgo.totaldone + " visited, "+currentalgo.errors+" errors.");
-            callbackEnd({visited:currentalgo.totaldone, errors:currentalgo.errors})
+            callbackEnd({visited:currentalgo.totaldone, errors:currentalgo.errors, shareddata:shareddata})
         }
     });
 }
@@ -131,6 +135,7 @@ function familyTreeGetDown({
     // @param currentChain: the current chain to the current 'from' (not included) [{id, name, nextisfather}]
     // @param currentalgo: shared parameters for the current process
     depth=0, currentChain=[],
+    shareddata={},
     currentalgo={totaldone:0, currentmax:0, errors:0}}={}) {
     currentalgo.currentmax++;
     //console.log("After call:" + from + " " + objectId(currentalgo));
@@ -143,7 +148,11 @@ function familyTreeGetDown({
         fetch(familyTreeRecursive_urlComplete(from)).then(response => {
                 return response.json();
             }).then(function (fullinfo) {
-                callback({depth:depth, from:from, infolocal:infolocal, fullinfo:fullinfo, chain:currentChain});
+                var command = callback({depth:depth, from:from, infolocal:infolocal, fullinfo:fullinfo, chain:currentChain,shareddata:shareddata});
+                if (command == "stop") {
+                    // do not go deeper
+                    return;
+                }
                 if (depth < depthmax && fullinfo.data.spouses) {
                     var childCounter = 0;
                     for (var i=0; i < fullinfo.data.spouses.length; i++) {
@@ -155,42 +164,56 @@ function familyTreeGetDown({
                         // new chain in order to tell we are in a father
                         var newChain = currentChain.slice(0);
                         newChain.push({id:from, name:infolocal.name, child:childCounter});
-                        var arguments = {callback:callback, depthmax:depthmax, callbackEnd:callbackEnd, currentChain:newChain, depth:depth+1, currentalgo:currentalgo,
+                        var arguments = {callback:callback, depthmax:depthmax, callbackEnd:callbackEnd, currentChain:newChain, depth:depth+1, currentalgo:currentalgo, shareddata:shareddata,
                         from:child.id};
                         familyTreeGetDown(arguments);
                     }
                   }
                 }
-            }).catch(function() {
+            }).catch(function(e) {
+                console.log(e);
                 currentalgo.errors++;
             }).finally(function() {
                 currentalgo.totaldone++;
                 if (currentalgo.totaldone == currentalgo.currentmax) {
                     console.log("Ended, " + currentalgo.totaldone + " visited, "+currentalgo.errors+" errors.");
-                    callbackEnd({visited:currentalgo.totaldone, errors:currentalgo.errors})
+                    callbackEnd({visited:currentalgo.totaldone, errors:currentalgo.errors, shareddata:shareddata})
                 }
             });
         }
     ).catch(function(err) {
+        console.log(err);
         currentalgo.currentmax--;
         currentalgo.errors++;
         if (currentalgo.totaldone == currentalgo.currentmax) {
             console.log("Ended, " + currentalgo.totaldone + " visited, "+currentalgo.errors+" errors.");
-            callbackEnd({visited:currentalgo.totaldone, errors:currentalgo.errors})
+            callbackEnd({visited:currentalgo.totaldone, errors:currentalgo.errors, shareddata:shareddata})
         }
     });
 }
 
+function getYearDate(conclusion) {
+    if (conclusion && conclusion.details && conclusion.details.date && conclusion.details.date.formalText) {
+        return conclusion.details.date.formalText.split("-")[0]; // year only
+    }
+    return "?";
+}
+function getFullDate(conclusion) {
+    if (conclusion && conclusion.details && conclusion.details.date && conclusion.details.date.formalText) {
+        return conclusion.details.date.formalText; // year only
+    }
+    return "?";
+}
 
 function getDates(infolocal) {
-    function getDate(conclusion) {
-        if (conclusion && conclusion.details && conclusion.details.date && conclusion.details.date.formalText) {
-            return conclusion.details.date.formalText.split("-")[0]; // year only
-        }
-        return "?";
-    }
-    return getDate(infolocal.birthlikeConclusion ? infolocal.birthlikeConclusion : infolocal.birth) + "-"+
-        getDate(infolocal.deathlikeConclusion ? infolocal.deathlikeConclusion : infolocal.death);
+    return getYearDate(infolocal.birthlikeConclusion ? infolocal.birthlikeConclusion : infolocal.birth) + "-"+
+        getYearDate(infolocal.deathlikeConclusion ? infolocal.deathlikeConclusion : infolocal.death);
+}
+function getBirthDate(infolocal) {
+    return getFullDate(infolocal.birthlikeConclusion ? infolocal.birthlikeConclusion : infolocal.birth);
+}
+function getDeathDate(infolocal) {
+    return getFullDate(infolocal.deathlikeConclusion ? infolocal.deathlikeConclusion : infolocal.death);
 }
 
 /**
