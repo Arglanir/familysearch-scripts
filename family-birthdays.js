@@ -5,15 +5,6 @@ Or a list of families, with relationships and birthdays.
 
 */
 
-function readChain(chain) {
-    var toreturn = "";
-    for (var i = 0; i < chain.length-1; i++) {
-        if (i > 0) toreturn += "-";
-        toreturn += chain[i].child;
-    }
-    return toreturn;
-}
-
 /**
  *  Callback for familyTreeGetDown keep track of down lines
  */
@@ -212,7 +203,10 @@ function displayListWhenFinished({shareddata={persons:{}}}={}) {
             '<!-- Généré le ' + new Date() + '-->\n' +
             '<head><meta charset="UTF-8"><title>Anniversaires</title></head><body>\n' +
             todisplay +
-            "</body></html>");
+            "</body>" +
+            // TODO: script in order to parse information in page to display something when it's someones' birthday
+            
+            "</html>");
         
         console.log("Finished!");
     }
