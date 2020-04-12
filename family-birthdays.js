@@ -207,7 +207,12 @@ function displayListWhenFinished({shareddata={persons:{}}}={}) {
             todisplay += "<br/>\r\n";
         }
         
-        download("anniversaires.html", '<html><head><meta charset="UTF-8"><title>Anniversaires</title></head><body>' + todisplay + "</body></html>");
+        download("anniversaires.html", 
+            '<!doctype html><html>\n' +
+            '<!-- Généré le ' + new Date() + '-->\n' +
+            '<head><meta charset="UTF-8"><title>Anniversaires</title></head><body>\n' +
+            todisplay +
+            "</body></html>");
         
         console.log("Finished!");
     }
