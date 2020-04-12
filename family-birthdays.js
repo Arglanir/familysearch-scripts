@@ -37,8 +37,6 @@ function storeInfoAboutDescendant({depth=0, from='UNKNOWN', infolocal={}, fullin
     person = {name:infolocal.name, birth:bdate, death:ddate};
     person.male = infolocal.gender == "MALE";
     person.parents = [];
-    //person.descrSp = infolocal.gender == "MALE" ? "chéri de " : "chérie de ";
-    //person.descrPa = infolocal.gender == "MALE" ? "fils de " : "fille de ";
 
     if (fullinfo.data.spouses) {
         for (var i=0; i < fullinfo.data.spouses.length; i++) {
@@ -52,8 +50,9 @@ function storeInfoAboutDescendant({depth=0, from='UNKNOWN', infolocal={}, fullin
             var stillSpouse = true;
             if (person.spouse) {
                 if (relationship.event && relationship.event.type) {
+                    // FIXME: one day it may be a list, because here we only see the last event (it seems)...
                     if (relationship.event.type == "DIVORCE") {
-                        console.log("Divorce detected");
+                        //console.log("Divorce detected");
                         stillSpouse = false;
                     }
                 }
@@ -78,6 +77,7 @@ function storeInfoAboutDescendant({depth=0, from='UNKNOWN', infolocal={}, fullin
     if (fullinfo.data.spouses) {
         for (var i=0; i < fullinfo.data.spouses.length; i++) {
             if (fullinfo.data.spouses[i].children) {
+                // FIXME: it seems that when there is no spouse, there is no children...
                 for (var j=0; j < fullinfo.data.spouses[i].children.length; j++) {
                     var child = fullinfo.data.spouses[i].children[j];
                     if (!child || !child.id) continue;
