@@ -5,16 +5,17 @@
 var nbStillParents = 0;
 var nbFinish = 0;
 var depthMax = 0;
-var result = {}; // depth => [{name, date, id}], with one special "notended"
+var result = window.familydepthresult = {}; // depth => [{name, date, id}], with one special "notended"
 var maxDepthFound = 0;
 function getAllFamilyTreeEnds({depth=0, from='UNKNOWN', infolocal={}, fullinfo={}, chain=[]}={}) {
     if (fullinfo.data.parents.length == 0) {
         // finish
-        var onedate = "-";
-        var conclusion = infolocal.birthlikeConclusion ? infolocal.birthlikeConclusion : infolocal.deathlikeConclusion;
-        if (conclusion) {
-            onedate = conclusion.details.date.formalText.split("-")[0];
-        }
+        var onedate = getDates(infolocal)
+        //"-";
+        //var conclusion = infolocal.birthlikeConclusion ? infolocal.birthlikeConclusion : infolocal.deathlikeConclusion;
+        //if (conclusion) {
+        //    onedate = conclusion.details.date.formalText.split("-")[0];
+        //}
         var chains = []
         chain.forEach(function({id="", name="", nextisfather=true}){
             chains.push(nextisfather ? "F" : "M");
@@ -43,7 +44,7 @@ function computeDepth({from=document.location.pathname.split("/").pop(), depthma
     nbFinish = 0;
     depthMax = depthmax;
     maxDepthFound = 0;
-    result = {};
+    result = window.familydepthresult = {};
     familyTreeRecursive({callback:getAllFamilyTreeEnds, from:from, depthmax:depthmax, callbackEnd:function(){
         console.log("Lines terminated: " + nbFinish + ", still with parents: " + nbStillParents);
         console.log("Max depth found: " + maxDepthFound);

@@ -99,7 +99,8 @@ function familyTreeRecursive({
                         });
                     }
                 }
-            }).catch(function() {
+            }).catch(function(err) {
+                console.log(err);
                 currentalgo.errors++;
             }).finally(function() {
                 currentalgo.totaldone++;
@@ -110,6 +111,7 @@ function familyTreeRecursive({
             });
         }
     ).catch(function(err) {
+        console.log(err);
         currentalgo.currentmax--;
         currentalgo.errors++;
         if (currentalgo.totaldone == currentalgo.currentmax) {
