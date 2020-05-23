@@ -44,10 +44,11 @@ function computeDepth({from=document.location.pathname.split("/").pop(), depthma
     nbFinish = 0;
     depthMax = depthmax;
     maxDepthFound = 0;
-    result = window.familydepthresult = {};
+    result = window.familydepthresult = {processing:true};
     familyTreeRecursive({callback:getAllFamilyTreeEnds, from:from, depthmax:depthmax, callbackEnd:function(){
         console.log("Lines terminated: " + nbFinish + ", still with parents: " + nbStillParents);
         console.log("Max depth found: " + maxDepthFound);
+        result.processing = false;
     }});
 }
 
