@@ -12,3 +12,4 @@ In a javascript console, copy/paste the content of [recursive-search.js](recursi
 
 ### From an ancestor:
 * [family-lines-down.js](family-lines-down.js): allows you to find lines descending from an ancestor.
+* [family-birthdays.js](family-birthdays.js): Creates a file listing all birthdays of the descendants.
