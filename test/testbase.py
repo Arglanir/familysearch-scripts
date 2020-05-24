@@ -16,7 +16,7 @@ DRIVER = webdriver.Firefox
 def DRIVERCREATION():
     from selenium.webdriver.firefox.options import Options
     options = Options()
-    options.headless = True
+    #options.headless = True
     profile = webdriver.FirefoxProfile()
     profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/plain,text/html")
     profile.set_preference("browser.download.folderLis", "1")
@@ -152,6 +152,7 @@ def selectThroughSR(driver, *selectors, analyseError=True, onlyTry=False):
                     
         else:
             raise
+
 
 
 def readDetailsPageInfo(driver):
