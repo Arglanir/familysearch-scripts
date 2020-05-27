@@ -5,7 +5,7 @@ try:
 except ImportError:
     print("Installing Selenium")
     p = subprocess.Popen([sys.executable, "-m", "pip", "install", "-U", "selenium"])
-    p.join()
+    p.communicate()
     import selenium
 
 from selenium import webdriver
