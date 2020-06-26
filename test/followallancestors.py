@@ -1,3 +1,6 @@
+"""This script goes through the whole tree and follows all ancestors.
+Does not go inside the children and theirs spouses."""
+
 from testbase import getFamilySearchDriver, selectThroughSR, goTo
 import time, datetime
 

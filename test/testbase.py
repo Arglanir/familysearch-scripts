@@ -4,8 +4,9 @@ try:
     import selenium
 except ImportError:
     print("Installing Selenium")
-    p = subprocess.Popen([sys.executable, "-m", "pip", "install", "-U", "selenium"])
-    p.communicate()
+    p = subprocess.Popen([sys.executable, "-m", "pip", "install", "-U", "selenium"],
+                         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    print(p.communicate())
     import selenium
 
 from selenium import webdriver
@@ -153,7 +154,10 @@ def selectThroughSR(driver, *selectors, analyseError=True, onlyTry=False):
         else:
             raise
 
-
+def familySearchRecursive(driver, idfrom, **kwargs):
+    processed = kwargs.get("processed", {})
+    # TODO
+    
 
 def readDetailsPageInfo(driver):
     """Shows how to fetch information"""
