@@ -158,7 +158,7 @@ function displayListWhenFinished({shareddata={persons:{}}}={}) {
             var t = person.birth.split('-');
             var month = t.length >= 2 ? parseInt(t[1]) : 0;
             if (month != lastmonth) {
-                todisplay += `<h3>${months[month]}</h3>\n`;
+                todisplay += `<h3 id="month-${month}">${months[month]}</h3>\n`;
                 lastmonth = month;
             }
             todisplay += "<span class=\"anniv-" + (t.length >= 2 ? t[2]+"-"+t[1] : "") + "\">"
@@ -205,14 +205,16 @@ function displayListWhenFinished({shareddata={persons:{}}}={}) {
             '<head><meta charset="UTF-8"><title>Anniversaires</title></head><body>\n' +
             todisplay +
             "</body>" +
-            // TODO: script in order to parse information in page to display something when it's someones' birthday
             `<script type="text/javascript">
 var style = document.createElement('style');
 style.type = 'text/css';
 var today = new Date();
+// display something on someone's birthday
 var classname = 'anniv-' + ("0"+today.getDate()).slice(-2) + "-" + ("0"+(today.getMonth() + 1)).slice(-2);
-style.innerHTML = '.'+classname+' { background-color: #FF0; }';
+style.innerHTML = '.'+classname+' { background-color: #FF0; } .'+classname+'::before { content: "\\\\1F973 "; } .'+classname+'::after { content: " \\\\1f389"; } ';
 document.getElementsByTagName('head')[0].appendChild(style);
+// scroll month to view
+setTimeout(function() {document.getElementById('month-' + (today.getMonth() + 1)).scrollIntoView();}, 500);
 </script>`+
             "</html>");
         
