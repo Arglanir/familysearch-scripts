@@ -161,6 +161,7 @@ function displayListWhenFinished({shareddata={persons:{}}}={}) {
                 todisplay += `<h3>${months[month]}</h3>\n`;
                 lastmonth = month;
             }
+            todisplay += "<span class=\"anniv-" + (t.length >= 2 ? t[2]+"-"+t[1] : "") + "\">"
             todisplay += `<a name="${person.id}"> </a>${person.name} (${person.birth.substr(1)}${person.death!='?'?' - ' + person.death.substr(1) + ' &#9829;' :''})`;
             if (person.spouse && persons[person.spouse]) {
                 todisplay += ', ';
@@ -195,7 +196,7 @@ function displayListWhenFinished({shareddata={persons:{}}}={}) {
                     }
                 }
             }
-            todisplay += "<br/>\r\n";
+            todisplay += "</span><br/>\r\n";
         }
         
         download("anniversaires.html", 
@@ -205,7 +206,14 @@ function displayListWhenFinished({shareddata={persons:{}}}={}) {
             todisplay +
             "</body>" +
             // TODO: script in order to parse information in page to display something when it's someones' birthday
-            
+            `<script type="text/javascript">
+var style = document.createElement('style');
+style.type = 'text/css';
+var today = new Date();
+var classname = 'anniv-' + ("0"+today.getDate()).slice(-2) + "-" + ("0"+(today.getMonth() + 1)).slice(-2);
+style.innerHTML = '.'+classname+' { background-color: #FF0; }';
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>`+
             "</html>");
         
         console.log("Finished!");

@@ -1,5 +1,5 @@
 """This script aims at testing some javascript modules using python and selenium"""
-import sys, subprocess, os, time, contextlib
+import sys, subprocess, os, time, contextlib, random
 try:
     import selenium
 except ImportError:
@@ -21,7 +21,7 @@ def DRIVERCREATION():
     profile = webdriver.FirefoxProfile()
     profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/plain,text/html")
     profile.set_preference("browser.download.folderLis", "1")
-    return DRIVER(firefox_profile = profile, options=options)
+    return DRIVER(firefox_profile=profile, options=options)
 
 FILESTOFETCH = {
 # https://github.com/mozilla/geckodriver/releases
@@ -248,9 +248,28 @@ def testBirthdays():
             content = fin.read()
         #driver.execute_script()
         print("Testing family-birthdays.js")
+        home = os.environ.get("HOME")
+        home = home if home else os.environ.get("USERPROFILE")
+        downloaddir = os.path.join(home, "Downloads")
+        if not os.path.exists(downloaddir):
+            downloaddir = os.path.join(home, "Téléchargemebts")
+        if not os.path.exists(downloaddir):
+            print("Inpossible to detect download dir.")
+            return
+        print("Using download dir:", downloaddir)
+        expectedfile = os.path.join(downloaddir, "anniversaires.html")
+        if os.path.exists(expectedfile):
+            oldfile = expectedfile + "_old"
+            while os.path.exists(oldfile):
+                oldfile += str(random.randint(0,9))
+            os.rename(expectedfile, oldfile)
+            print("Renamed", expectedfile, "to", oldfile)
         with open(os.path.join(JSFOLDER, "family-birthdays.js"), "r", encoding="utf-8") as fin:
             print("result:", driver.execute_script(content + fin.read()))
-        niceCountDown(15)
+        while not os.path.exists(expectedfile):
+            print("Waiting for", expectedfile)
+            niceCountDown(15)
+        print("found!")
 
 
 if __name__ == '__main__':
