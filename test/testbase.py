@@ -1,5 +1,11 @@
 """This script aims at testing some javascript modules using python and selenium"""
-import sys, subprocess, os, time, contextlib, random
+import contextlib
+import os
+import subprocess
+import sys
+import time
+import traceback
+
 try:
     import selenium
 except ImportError:
@@ -11,23 +17,45 @@ except ImportError:
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import JavascriptException
+# from selenium.common.exceptions import JavascriptException
 
 DRIVER = webdriver.Firefox
-def DRIVERCREATION():
+
+
+def DRIVERCREATION_FF():
     from selenium.webdriver.firefox.options import Options
+    from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+    capabilities = DesiredCapabilities.CHROME
+    capabilities['loggingPrefs'] = {'browser': 'ALL'}
     options = Options()
-    #options.headless = True
+    # options.headless = True
     profile = webdriver.FirefoxProfile()
     profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/plain,text/html")
     profile.set_preference("browser.download.folderLis", "1")
-    return DRIVER(firefox_profile=profile, options=options)
+    profile.set_preference("devtools.console.stdout.content", True)
+    return DRIVER(firefox_profile=profile, options=options#, desired_capabilities=capabilities
+     )
+
+
+def DRIVERCREATION_C():
+    from selenium.webdriver.firefox.options import Options
+    from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+    capabilities = DesiredCapabilities.CHROME
+    capabilities['loggingPrefs'] = {'browser': 'ALL'}
+    options = Options()
+    # options.headless = True
+    # profile = webdriver.FirefoxProfile()
+    # profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/plain,text/html")
+    # profile.set_preference("browser.download.folderLis", "1")
+    # profile.set_preference("devtools.console.stdout.content", True)
+    return DRIVER(desired_capabilities=capabilities)
+DRIVERCREATION = DRIVERCREATION_FF
 
 FILESTOFETCH = {
 # https://github.com/mozilla/geckodriver/releases
 webdriver.Firefox: "https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-win64.zip",
 # https://chromedriver.chromium.org/downloads
-webdriver.Chrome: "https://chromedriver.storage.googleapis.com/83.0.4103.39/chromedriver_win32.zip"
+webdriver.Chrome: "https://chromedriver.storage.googleapis.com/89.0.4389.23/chromedriver_win32.zip"
 }
 # installing firefox driver
 #   
@@ -36,6 +64,7 @@ EXECUTABLEFOLDER = "drivers"
 SCRIPTFOLDER = os.path.dirname(os.path.abspath(__file__))
 JSFOLDER = os.path.dirname(SCRIPTFOLDER)
 CURRENTDRIVER = None
+
 
 @contextlib.contextmanager
 def getFamilySearchDriver(quit_at_end=True):
@@ -46,7 +75,8 @@ def getFamilySearchDriver(quit_at_end=True):
             print("Update PATH")
             os.environ["PATH"] = os.pathsep.join([os.environ["PATH"], destfoldertopath])
         driver = DRIVERCREATION()
-    except:
+    except Exception as e:
+        traceback.print_exc()
         if not os.path.exists(destfoldertopath):
             os.makedirs(destfoldertopath)
         import urllib.request, zipfile, io
@@ -91,6 +121,7 @@ def getFamilySearchDriver(quit_at_end=True):
         if quit_at_end:
             driver.quit()
 
+
 def testFamilyDepth():
     with getFamilySearchDriver() as driver:
         print("Going to person")
@@ -117,6 +148,15 @@ def testFamilyDepth():
         for k, v in sorted(result.items()):
             print(k, ":", len(v) if hasattr(v, '__len__') else v)
 
+
+def captureConsoleLog(driver):
+    driver.execute_script("window.alllog = []; var old_console_log = console.log; console.log = function() {window.alllog.push(arguments);old_console_log.apply(null, arguments);};")
+
+
+def getConsoleLog(driver):
+    return driver.execute_script("return window.alllog;")
+
+
 def niceCountDown(t, step=1):  # in seconds
     pad_str = ' ' * len('%d' % t)
     for i in range(t, 0, -step):
@@ -124,14 +164,17 @@ def niceCountDown(t, step=1):  # in seconds
         sys.stdout.flush()
         time.sleep(step)
 
+
 def goTo(driver, identifier):
     """Go to a specific page of Family search"""
     driver.get(f"https://www.familysearch.org/tree/person/details/{identifier}")
+
 
 def getAttributes(driver, element):
     """Return all attributes of an element"""
     attrs = driver.execute_script('var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;', element)
     return attrs
+
 
 def selectThroughSR(driver, *selectors, analyseError=True, onlyTry=False):
     # select element through shadow roots
@@ -153,6 +196,7 @@ def selectThroughSR(driver, *selectors, analyseError=True, onlyTry=False):
                     
         else:
             raise
+
 
 def familySearchRecursive(driver, idfrom, **kwargs):
     processed = kwargs.get("processed", {})
@@ -209,72 +253,72 @@ def readDetailsPageInfo(driver):
               "female" if "female" in parentel.get_attribute("class") else "male")
         print("  ", parentel.find_element_by_id("person-name-link").text)
 
-def testBirthdays():
+
+def testScript():
     with getFamilySearchDriver() as driver:
-        goTo(driver, "")
-        # go to grand parent
-        for i in range(2):
-            parentid = None
-            badcountdown = 5
-            while parentid is None:
-                time.sleep(1)
-                try:
-                    parentel = selectThroughSR(driver, "fs-person-page",
-                               "fs-tree-person-details", 
-                               "fs-tree-person-family", 
-                               "fs-family-members", 
-                               "ul#parents",
-                               "fs-family-members-block",
-                               "fs-family-members-couple",
-                               "#spouse1-display", analyseError=False)
-                    parentid = parentel.get_attribute("destination").split("/")[-1]
-                except JavascriptException as err:
-                    print("Page not loaded...", repr(err))
-                    # not loaded yet
-                    pass
-                except AttributeError as err:
-                    print("Page seems loaded but...", repr(err))
-                    badcountdown -= 1
-                    if badcountdown < 0:
-                        readDetailsPageInfo(driver)
-                        raise
-                    # not loaded yet
-                    pass
-                
-            print("Going to", parentid, parentel.find_element_by_id("person-name-link").text)
-            goTo(driver, parentid)
-        print("Importing recursive-search.js")
+        goTo(driver, "L62N-WQ4")
+        returned = driver.execute_script(
+            '''return {"toto":[1,2,3], "titi":"3,4,5"};''')
+        assert returned["toto"] == [1, 2, 3]
+        assert returned["titi"] == "3,4,5"
+
+        captureConsoleLog(driver)
         with open(os.path.join(JSFOLDER, "recursive-search.js"), "r") as fin:
             content = fin.read()
-        #driver.execute_script()
-        print("Testing family-birthdays.js")
-        home = os.environ.get("HOME")
-        home = home if home else os.environ.get("USERPROFILE")
-        downloaddir = os.path.join(home, "Downloads")
-        if not os.path.exists(downloaddir):
-            downloaddir = os.path.join(home, "Téléchargemebts")
-        if not os.path.exists(downloaddir):
-            print("Inpossible to detect download dir.")
-            return
-        print("Using download dir:", downloaddir)
-        expectedfile = os.path.join(downloaddir, "anniversaires.html")
-        if os.path.exists(expectedfile):
-            oldfile = expectedfile + "_old"
-            while os.path.exists(oldfile):
-                oldfile += str(random.randint(0,9))
-            os.rename(expectedfile, oldfile)
-            print("Renamed", expectedfile, "to", oldfile)
-        with open(os.path.join(JSFOLDER, "family-birthdays.js"), "r", encoding="utf-8") as fin:
-            print("result:", driver.execute_script(content + fin.read()))
-        while not os.path.exists(expectedfile):
-            print("Waiting for", expectedfile)
-            niceCountDown(15)
-        print("found!")
+        expected = "TestScriptFinished!"
+        print("Executing script...")
+        driver.execute_script(content + '''
+familyTreeRecursive({callback:function({depth=0, from='UNKNOWN', infolocal={}, fullinfo={}, chain=[]}={}){
+    console.log("Looking at " + from);
+    window.infolocal = infolocal;
+    window.fullinfo = fullinfo;
+}, from:"L62N-WQ4", depthmax:0, callbackEnd:function(){
+    console.log("''' + expected + '''");
+}});
+''')
+        print("Reading logs")
+        indexline = 0
+        for i in range(20):
+            log = getConsoleLog(driver)
+            for iline in range(indexline, len(log)):
+                line = log[iline]
+                print(line)
+                if expected == line[0]:
+                    indexline = -1
+                    break
+            if indexline < 0:
+                break
+            indexline = len(log)
+            time.sleep(1.)
+        infolocal = driver.execute_script('''return window.infolocal;''')
+        fullinfo = driver.execute_script('''return window.fullinfo;''')
+
+        print(infolocal)
+        print(fullinfo)
+        create_if_existing = False
+        import json
+        for name, dico in dict(infolocal=infolocal, fullinfo=fullinfo).items():
+            create = create_if_existing
+            expectedfilename = os.path.join(JSFOLDER, "test", name + ".reference.json")
+            if not os.path.exists(expectedfilename):
+                print("File", expectedfilename, "doesn't exist. Creating it...")
+                create = True
+            if os.path.exists(expectedfilename) and not create:
+                with open(expectedfilename, "r") as fin:
+                    expected = json.load(fin)
+                    assert expected == dico, ("Different dictionary " + name +
+                                              ":\n  got:      " + repr(dico) +
+                                                "\n  expected: " + repr(expected))
+            elif create:
+                with open(expectedfilename, "w") as fout:
+                    json.dump(dico, fout, sort_keys=True, indent=4)
+        print("Both infolocal and fullinfo match.")
+
 
 
 if __name__ == '__main__':
     #testFamilyDepth()
-    testBirthdays()
+    testScript()
     '''with getFamilySearchDriver(False) as driver:
         print("driver loaded")
         goTo(driver, "")

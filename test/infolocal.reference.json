@@ -1,0 +1,220 @@
+{
+    "birth": {
+        "contributor": {
+            "date": "23 ao\u00fbt 2020",
+            "id": "M9MN-1JT",
+            "name": "C\u00e9dric Mayer",
+            "timestamp": "2020-08-23T18:40:46+00:00"
+        },
+        "details": {
+            "date": {
+                "formalText": "+1866-11-30",
+                "julianDateRange": {
+                    "earliestDay": 2402936,
+                    "latestDay": 2402936
+                },
+                "localizedText": "30 novembre 1866",
+                "modifier": null,
+                "normalizedText": "30 novembre 1866",
+                "originalText": "30 Nov 1866"
+            },
+            "deceasedFlag": null,
+            "description": null,
+            "detailsType": "EventDetails",
+            "place": {
+                "geoCode": {
+                    "latitude": 45.9536,
+                    "longitude": 1.6787
+                },
+                "id": 6829484,
+                "localizedText": "Montboucher, Creuse, Limousin, France",
+                "normalizedText": "Montboucher, Creuse, Limousin, France",
+                "originalText": "Montboucher, Sargnat, Canton de Bourganeuf, CREUSE, France"
+            },
+            "sourceCount": 1,
+            "title": "",
+            "type": "BIRTH"
+        },
+        "id": "79622560-b979-4204-98bf-34e4f965d5b7",
+        "justification": "GEDCOM data",
+        "multiValued": false,
+        "type": "BIRTH"
+    },
+    "collaborateCount": 0,
+    "death": {
+        "contributor": {
+            "date": "6 juin 2019",
+            "id": "MMMM-MMN",
+            "name": "FamilySearch",
+            "timestamp": "2019-06-06T21:16:10+00:00"
+        },
+        "details": {
+            "date": {
+                "formalText": "+1929",
+                "julianDateRange": {
+                    "earliestDay": 2425613,
+                    "latestDay": 2425613
+                },
+                "localizedText": "1929",
+                "modifier": null,
+                "normalizedText": "1929",
+                "originalText": "1929"
+            },
+            "deceasedFlag": null,
+            "description": null,
+            "detailsType": "EventDetails",
+            "place": null,
+            "sourceCount": 0,
+            "title": "",
+            "type": "DEATH"
+        },
+        "id": "f1e514fe-d22c-45c0-ae4b-c14cb21b15a0",
+        "justification": null,
+        "multiValued": false,
+        "type": "DEATH"
+    },
+    "deleted": false,
+    "discussionCount": 0,
+    "fullLifespan": "30 novembre 1866 \u2013 1929",
+    "gender": "MALE",
+    "genderConclusion": {
+        "contributor": {
+            "date": "30 mars 2014",
+            "id": "MM1N-W6R",
+            "name": "Mika\u00ebl Mayer",
+            "timestamp": "2014-03-30T16:23:12+00:00"
+        },
+        "details": {
+            "detailsType": "GenderDetails",
+            "gender": "MALE",
+            "sourceCount": 1
+        },
+        "id": "0c5bf392-13c9-4b4d-bb46-76ec9546dce5",
+        "justification": null,
+        "multiValued": false,
+        "type": "GENDER"
+    },
+    "hasMultipleFamiliesAsChild": false,
+    "hasMultipleFamiliesAsParent": false,
+    "hasSpouseOrChildren": false,
+    "id": "L62N-WQ4",
+    "inPrivateSpace": false,
+    "lifespan": "1866\u20131929",
+    "living": false,
+    "memoryCount": 11,
+    "name": "Fran\u00e7ois Gayaudon",
+    "nameConclusion": {
+        "contributor": {
+            "date": "30 mars 2014",
+            "id": "MM1N-W6R",
+            "name": "Mika\u00ebl Mayer",
+            "timestamp": "2014-03-30T16:23:12+00:00"
+        },
+        "details": {
+            "detailsType": "NameDetails",
+            "fullText": "Fran\u00e7ois Gayaudon",
+            "nameForms": [
+                {
+                    "familyPart": "Gayaudon",
+                    "fullText": "Fran\u00e7ois Gayaudon",
+                    "givenPart": "Fran\u00e7ois",
+                    "lang": "x-Latn",
+                    "prefixPart": null,
+                    "script": "ROMAN",
+                    "suffixPart": null
+                }
+            ],
+            "nameType": "BIRTH",
+            "preferredName": true,
+            "sourceCount": 1,
+            "style": "EUROTYPIC"
+        },
+        "id": "991a0a6e-291e-4f21-a0db-159dd32b100f",
+        "justification": null,
+        "multiValued": false,
+        "type": "NAME"
+    },
+    "noteCount": 0,
+    "otherConclusions": [
+        {
+            "contributor": {
+                "date": "25 f\u00e9vrier 2015",
+                "id": "MMMM-MMC",
+                "name": "FamilySearch",
+                "timestamp": "2015-02-25T18:03:39+00:00"
+            },
+            "details": {
+                "detailsType": "NameDetails",
+                "fullText": "Fran\u00e7ois Gayaudon",
+                "nameForms": [
+                    {
+                        "familyPart": "Gayaudon",
+                        "fullText": "Fran\u00e7ois Gayaudon",
+                        "givenPart": "Fran\u00e7ois",
+                        "lang": "und",
+                        "prefixPart": null,
+                        "script": "UNSPECIFIED",
+                        "suffixPart": null
+                    }
+                ],
+                "nameType": "BIRTH",
+                "preferredName": false,
+                "sourceCount": 0,
+                "style": "EUROTYPIC"
+            },
+            "id": "0ca3ae4f-95c7-4dfa-bd6c-7be6d049400e",
+            "justification": null,
+            "multiValued": true,
+            "type": "ALTERNATE_NAME"
+        },
+        {
+            "contributor": {
+                "date": "11 mai 2018",
+                "id": "M9MN-1JT",
+                "name": "C\u00e9dric Mayer",
+                "timestamp": "2018-05-11T14:31:24+00:00"
+            },
+            "details": {
+                "date": {
+                    "formalText": "+1899",
+                    "julianDateRange": {
+                        "earliestDay": 2414656,
+                        "latestDay": 2414656
+                    },
+                    "localizedText": "1899",
+                    "modifier": null,
+                    "normalizedText": "1899",
+                    "originalText": "1899"
+                },
+                "deceasedFlag": null,
+                "description": "Architecte",
+                "detailsType": "EventDetails",
+                "place": {
+                    "geoCode": {
+                        "latitude": 48.86667,
+                        "longitude": 2.33333
+                    },
+                    "id": 442102,
+                    "localizedText": "Paris, \u00cele-de-France, France",
+                    "normalizedText": "Paris, \u00cele-de-France, France",
+                    "originalText": "Paris, \u00cele-de-France, France"
+                },
+                "sourceCount": 0,
+                "title": "",
+                "type": "OCCUPATION"
+            },
+            "id": "2be4ef44-171d-4d91-bf7a-299df355123f",
+            "justification": "Indiqu\u00e9 sur l'acte de d\u00e9c\u00e8s de son p\u00e8re",
+            "multiValued": true,
+            "type": "OCCUPATION"
+        }
+    ],
+    "portraitUrl": "https://tree-portraits-pgp.familysearchcdn.org/vpvy2/thumb200s.jpg",
+    "principlePerson": false,
+    "readOnly": false,
+    "size": "CARD",
+    "skeleton": false,
+    "sourceCount": 5,
+    "spaceId": "MMMM-MMM",
+    "templeRollupStatus": "RESERVED"
+}

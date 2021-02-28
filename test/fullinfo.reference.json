@@ -1,0 +1,789 @@
+{
+    "data": {
+        "parents": [
+            {
+                "children": [
+                    {
+                        "discussionCount": 0,
+                        "dismissedSuggestions": {
+                            "dataQualityList": null,
+                            "empty": true,
+                            "researchSuggestionList": null
+                        },
+                        "gender": "MALE",
+                        "id": "L62N-WQ4",
+                        "inPrivateSpace": false,
+                        "isDeleted": false,
+                        "isLiving": false,
+                        "lifeSpan": "1866\u20131929",
+                        "lifeSpanDates": "",
+                        "lifespanBegin": 2402936,
+                        "lifespanEnd": 2425613,
+                        "lineageConclusions": [],
+                        "living": false,
+                        "name": "Fran\u00e7ois Gayaudon",
+                        "nameConclusion": {
+                            "contributor": null,
+                            "details": {
+                                "detailsType": "NameDetails",
+                                "fullText": "Fran\u00e7ois Gayaudon",
+                                "nameForms": [
+                                    {
+                                        "familyPart": "Gayaudon",
+                                        "fullText": "Fran\u00e7ois Gayaudon",
+                                        "givenPart": "Fran\u00e7ois",
+                                        "lang": "x-Latn",
+                                        "prefixPart": null,
+                                        "script": "ROMAN",
+                                        "suffixPart": null
+                                    }
+                                ],
+                                "nameType": "",
+                                "preferredName": true,
+                                "sourceCount": 0,
+                                "style": "EUROTYPIC"
+                            },
+                            "id": null,
+                            "justification": "",
+                            "multiValued": false,
+                            "type": "NAME"
+                        },
+                        "noteCount": 0,
+                        "obsoleteIdWasRequested": false,
+                        "portraitUrl": null,
+                        "principlePerson": true,
+                        "readOnly": false,
+                        "relationshipId": "MTMG-6CJ",
+                        "sourceCount": 5,
+                        "spaceId": "MMMM-MMM",
+                        "suggestions": null
+                    },
+                    {
+                        "discussionCount": 0,
+                        "dismissedSuggestions": {
+                            "dataQualityList": null,
+                            "empty": true,
+                            "researchSuggestionList": null
+                        },
+                        "gender": "MALE",
+                        "id": "LBQM-1Z3",
+                        "inPrivateSpace": false,
+                        "isDeleted": false,
+                        "isLiving": false,
+                        "lifeSpan": "1868\u2013D\u00e9c\u00e9d\u00e9",
+                        "lifeSpanDates": "",
+                        "lifespanBegin": 2403333,
+                        "lifespanEnd": 0,
+                        "lineageConclusions": [],
+                        "living": false,
+                        "name": "Antoine GAYAUDON",
+                        "nameConclusion": {
+                            "contributor": null,
+                            "details": {
+                                "detailsType": "NameDetails",
+                                "fullText": "Antoine GAYAUDON",
+                                "nameForms": [
+                                    {
+                                        "familyPart": "GAYAUDON",
+                                        "fullText": "Antoine GAYAUDON",
+                                        "givenPart": "Antoine",
+                                        "lang": "fr",
+                                        "prefixPart": null,
+                                        "script": "FRENCH",
+                                        "suffixPart": null
+                                    }
+                                ],
+                                "nameType": "",
+                                "preferredName": true,
+                                "sourceCount": 0,
+                                "style": "EUROTYPIC"
+                            },
+                            "id": null,
+                            "justification": "",
+                            "multiValued": false,
+                            "type": "NAME"
+                        },
+                        "noteCount": 0,
+                        "obsoleteIdWasRequested": false,
+                        "portraitUrl": null,
+                        "principlePerson": false,
+                        "readOnly": false,
+                        "relationshipId": "9SC7-BY3",
+                        "sourceCount": 0,
+                        "spaceId": "MMMM-MMM",
+                        "suggestions": null
+                    },
+                    {
+                        "discussionCount": 0,
+                        "dismissedSuggestions": {
+                            "dataQualityList": null,
+                            "empty": true,
+                            "researchSuggestionList": null
+                        },
+                        "gender": "FEMALE",
+                        "id": "LBQM-YVT",
+                        "inPrivateSpace": false,
+                        "isDeleted": false,
+                        "isLiving": false,
+                        "lifeSpan": "1870\u20131870",
+                        "lifeSpanDates": "",
+                        "lifespanBegin": 2404064,
+                        "lifespanEnd": 2404064,
+                        "lineageConclusions": [],
+                        "living": false,
+                        "name": "Jos\u00e9phine Gayaudon",
+                        "nameConclusion": {
+                            "contributor": null,
+                            "details": {
+                                "detailsType": "NameDetails",
+                                "fullText": "Jos\u00e9phine Gayaudon",
+                                "nameForms": [
+                                    {
+                                        "familyPart": "Gayaudon",
+                                        "fullText": "Jos\u00e9phine Gayaudon",
+                                        "givenPart": "Jos\u00e9phine",
+                                        "lang": "fr",
+                                        "prefixPart": null,
+                                        "script": "FRENCH",
+                                        "suffixPart": null
+                                    }
+                                ],
+                                "nameType": "",
+                                "preferredName": true,
+                                "sourceCount": 0,
+                                "style": "EUROTYPIC"
+                            },
+                            "id": null,
+                            "justification": "",
+                            "multiValued": false,
+                            "type": "NAME"
+                        },
+                        "noteCount": 0,
+                        "obsoleteIdWasRequested": false,
+                        "portraitUrl": null,
+                        "principlePerson": false,
+                        "readOnly": false,
+                        "relationshipId": "9SC7-FXB",
+                        "sourceCount": 0,
+                        "spaceId": "MMMM-MMM",
+                        "suggestions": null
+                    },
+                    {
+                        "discussionCount": 0,
+                        "dismissedSuggestions": {
+                            "dataQualityList": null,
+                            "empty": true,
+                            "researchSuggestionList": null
+                        },
+                        "gender": "MALE",
+                        "id": "LBQ9-95S",
+                        "inPrivateSpace": false,
+                        "isDeleted": false,
+                        "isLiving": false,
+                        "lifeSpan": "1872\u20131935",
+                        "lifeSpanDates": "",
+                        "lifespanBegin": 2404794,
+                        "lifespanEnd": 2427804,
+                        "lineageConclusions": [],
+                        "living": false,
+                        "name": "Louis Paul GAYAUDON",
+                        "nameConclusion": {
+                            "contributor": null,
+                            "details": {
+                                "detailsType": "NameDetails",
+                                "fullText": "Louis Paul GAYAUDON",
+                                "nameForms": [
+                                    {
+                                        "familyPart": "GAYAUDON",
+                                        "fullText": "Louis Paul GAYAUDON",
+                                        "givenPart": "Louis Paul",
+                                        "lang": "fr",
+                                        "prefixPart": null,
+                                        "script": "FRENCH",
+                                        "suffixPart": null
+                                    }
+                                ],
+                                "nameType": "",
+                                "preferredName": true,
+                                "sourceCount": 0,
+                                "style": "EUROTYPIC"
+                            },
+                            "id": null,
+                            "justification": "",
+                            "multiValued": false,
+                            "type": "NAME"
+                        },
+                        "noteCount": 0,
+                        "obsoleteIdWasRequested": false,
+                        "portraitUrl": null,
+                        "principlePerson": false,
+                        "readOnly": false,
+                        "relationshipId": "9SC7-JJG",
+                        "sourceCount": 0,
+                        "spaceId": "MMMM-MMM",
+                        "suggestions": null
+                    },
+                    {
+                        "discussionCount": 0,
+                        "dismissedSuggestions": {
+                            "dataQualityList": null,
+                            "empty": true,
+                            "researchSuggestionList": null
+                        },
+                        "gender": "FEMALE",
+                        "id": "LBQM-GGM",
+                        "inPrivateSpace": false,
+                        "isDeleted": false,
+                        "isLiving": false,
+                        "lifeSpan": "1886\u20131945",
+                        "lifeSpanDates": "",
+                        "lifespanBegin": 2409908,
+                        "lifespanEnd": 2431457,
+                        "lineageConclusions": [],
+                        "living": false,
+                        "name": "Marie Emilie GAYAUDON",
+                        "nameConclusion": {
+                            "contributor": null,
+                            "details": {
+                                "detailsType": "NameDetails",
+                                "fullText": "Marie Emilie GAYAUDON",
+                                "nameForms": [
+                                    {
+                                        "familyPart": "GAYAUDON",
+                                        "fullText": "Marie Emilie GAYAUDON",
+                                        "givenPart": "Marie Emilie",
+                                        "lang": "fr",
+                                        "prefixPart": null,
+                                        "script": "FRENCH",
+                                        "suffixPart": null
+                                    }
+                                ],
+                                "nameType": "",
+                                "preferredName": true,
+                                "sourceCount": 0,
+                                "style": "EUROTYPIC"
+                            },
+                            "id": null,
+                            "justification": "",
+                            "multiValued": false,
+                            "type": "NAME"
+                        },
+                        "noteCount": 0,
+                        "obsoleteIdWasRequested": false,
+                        "portraitUrl": null,
+                        "principlePerson": false,
+                        "readOnly": false,
+                        "relationshipId": "9SC7-TWK",
+                        "sourceCount": 0,
+                        "spaceId": "MMMM-MMM",
+                        "suggestions": null
+                    }
+                ],
+                "coupleId": "L62J-ZY8_L2ZQ-DHZ",
+                "current": true,
+                "dismissedSuggestions": {
+                    "dataQualityList": null,
+                    "empty": true,
+                    "researchSuggestionList": null
+                },
+                "event": {
+                    "formalDate": "+1866-02-12",
+                    "originalDate": "12 f\u00e9vrier 1866",
+                    "originalPlace": "Montboucher, Creuse, Limousin, France",
+                    "placeId": 6829484,
+                    "standardDate": "12 f\u00e9vrier 1866",
+                    "standardPlace": "Montboucher, Creuse, Limousin, France",
+                    "type": "MARRIAGE"
+                },
+                "relationshipId": "MN1J-C19",
+                "spouse1": {
+                    "discussionCount": 0,
+                    "dismissedSuggestions": {
+                        "dataQualityList": null,
+                        "empty": true,
+                        "researchSuggestionList": null
+                    },
+                    "gender": "MALE",
+                    "id": "L62J-ZY8",
+                    "inPrivateSpace": false,
+                    "isDeleted": false,
+                    "isLiving": false,
+                    "lifeSpan": "1837\u20131899",
+                    "lifeSpanDates": "",
+                    "lifespanBegin": 2392357,
+                    "lifespanEnd": 2415007,
+                    "living": false,
+                    "name": "Pierre GAYAUDON",
+                    "nameConclusion": {
+                        "contributor": null,
+                        "details": {
+                            "detailsType": "NameDetails",
+                            "fullText": "Pierre GAYAUDON",
+                            "nameForms": [
+                                {
+                                    "familyPart": "GAYAUDON",
+                                    "fullText": "Pierre GAYAUDON",
+                                    "givenPart": "Pierre",
+                                    "lang": "und",
+                                    "prefixPart": null,
+                                    "script": "UNSPECIFIED",
+                                    "suffixPart": null
+                                }
+                            ],
+                            "nameType": "",
+                            "preferredName": true,
+                            "sourceCount": 0,
+                            "style": "EUROTYPIC"
+                        },
+                        "id": null,
+                        "justification": "",
+                        "multiValued": false,
+                        "type": "NAME"
+                    },
+                    "noteCount": 0,
+                    "obsoleteIdWasRequested": false,
+                    "portraitUrl": null,
+                    "principlePerson": false,
+                    "readOnly": false,
+                    "sourceCount": 3,
+                    "spaceId": "MMMM-MMM",
+                    "suggestions": null
+                },
+                "spouse2": {
+                    "discussionCount": 0,
+                    "dismissedSuggestions": {
+                        "dataQualityList": null,
+                        "empty": true,
+                        "researchSuggestionList": null
+                    },
+                    "gender": "FEMALE",
+                    "id": "L2ZQ-DHZ",
+                    "inPrivateSpace": false,
+                    "isDeleted": false,
+                    "isLiving": false,
+                    "lifeSpan": "1847\u2013D\u00e9c\u00e9d\u00e9e",
+                    "lifeSpanDates": "",
+                    "lifespanBegin": 2395919,
+                    "lifespanEnd": 0,
+                    "living": false,
+                    "name": "Marie Faure",
+                    "nameConclusion": {
+                        "contributor": null,
+                        "details": {
+                            "detailsType": "NameDetails",
+                            "fullText": "Marie Faure",
+                            "nameForms": [
+                                {
+                                    "familyPart": "Faure",
+                                    "fullText": "Marie Faure",
+                                    "givenPart": "Marie",
+                                    "lang": "x-Latn",
+                                    "prefixPart": null,
+                                    "script": "ROMAN",
+                                    "suffixPart": null
+                                }
+                            ],
+                            "nameType": "",
+                            "preferredName": true,
+                            "sourceCount": 0,
+                            "style": "EUROTYPIC"
+                        },
+                        "id": null,
+                        "justification": "",
+                        "multiValued": false,
+                        "type": "NAME"
+                    },
+                    "noteCount": 0,
+                    "obsoleteIdWasRequested": false,
+                    "portraitUrl": null,
+                    "principlePerson": false,
+                    "readOnly": false,
+                    "sourceCount": 3,
+                    "spaceId": "MMMM-MMM",
+                    "suggestions": null
+                },
+                "suggestions": null
+            }
+        ],
+        "spouses": [
+            {
+                "children": [
+                    {
+                        "discussionCount": 0,
+                        "dismissedSuggestions": {
+                            "dataQualityList": null,
+                            "empty": true,
+                            "researchSuggestionList": null
+                        },
+                        "gender": "FEMALE",
+                        "id": "L51J-VFZ",
+                        "inPrivateSpace": false,
+                        "isDeleted": false,
+                        "isLiving": false,
+                        "lifeSpan": "1896\u20131898",
+                        "lifeSpanDates": "",
+                        "lifespanBegin": 2413881,
+                        "lifespanEnd": 2414291,
+                        "lineageConclusions": [],
+                        "living": false,
+                        "name": "Ren\u00e9e Louise Gayaudon",
+                        "nameConclusion": {
+                            "contributor": null,
+                            "details": {
+                                "detailsType": "NameDetails",
+                                "fullText": "Ren\u00e9e Louise Gayaudon",
+                                "nameForms": [
+                                    {
+                                        "familyPart": "Gayaudon",
+                                        "fullText": "Ren\u00e9e Louise Gayaudon",
+                                        "givenPart": "Ren\u00e9e Louise",
+                                        "lang": "und",
+                                        "prefixPart": null,
+                                        "script": "UNSPECIFIED",
+                                        "suffixPart": null
+                                    }
+                                ],
+                                "nameType": "",
+                                "preferredName": true,
+                                "sourceCount": 0,
+                                "style": "EUROTYPIC"
+                            },
+                            "id": null,
+                            "justification": "",
+                            "multiValued": false,
+                            "type": "NAME"
+                        },
+                        "noteCount": 0,
+                        "obsoleteIdWasRequested": false,
+                        "portraitUrl": null,
+                        "principlePerson": false,
+                        "readOnly": false,
+                        "relationshipId": "MB6R-ZSK",
+                        "sourceCount": 2,
+                        "spaceId": "MMMM-MMM",
+                        "suggestions": null
+                    },
+                    {
+                        "discussionCount": 0,
+                        "dismissedSuggestions": {
+                            "dataQualityList": null,
+                            "empty": true,
+                            "researchSuggestionList": null
+                        },
+                        "gender": "MALE",
+                        "id": "LJLG-NLK",
+                        "inPrivateSpace": false,
+                        "isDeleted": false,
+                        "isLiving": false,
+                        "lifeSpan": "1898\u20131956",
+                        "lifeSpanDates": "",
+                        "lifespanBegin": 2414654,
+                        "lifespanEnd": 2435673,
+                        "lineageConclusions": [],
+                        "living": false,
+                        "name": "Marcel Louis Pierre GAYAUDON",
+                        "nameConclusion": {
+                            "contributor": null,
+                            "details": {
+                                "detailsType": "NameDetails",
+                                "fullText": "Marcel Louis Pierre GAYAUDON",
+                                "nameForms": [
+                                    {
+                                        "familyPart": "GAYAUDON",
+                                        "fullText": "Marcel Louis Pierre GAYAUDON",
+                                        "givenPart": "Marcel Louis Pierre",
+                                        "lang": "und",
+                                        "prefixPart": null,
+                                        "script": "UNSPECIFIED",
+                                        "suffixPart": null
+                                    }
+                                ],
+                                "nameType": "",
+                                "preferredName": true,
+                                "sourceCount": 0,
+                                "style": "EUROTYPIC"
+                            },
+                            "id": null,
+                            "justification": "",
+                            "multiValued": false,
+                            "type": "NAME"
+                        },
+                        "noteCount": 0,
+                        "obsoleteIdWasRequested": false,
+                        "portraitUrl": null,
+                        "principlePerson": false,
+                        "readOnly": false,
+                        "relationshipId": "MP41-2R1",
+                        "sourceCount": 2,
+                        "spaceId": "MMMM-MMM",
+                        "suggestions": null
+                    },
+                    {
+                        "discussionCount": 0,
+                        "dismissedSuggestions": {
+                            "dataQualityList": null,
+                            "empty": true,
+                            "researchSuggestionList": null
+                        },
+                        "gender": "FEMALE",
+                        "id": "KPHK-N9X",
+                        "inPrivateSpace": false,
+                        "isDeleted": false,
+                        "isLiving": false,
+                        "lifeSpan": "1903\u20131978",
+                        "lifeSpanDates": "",
+                        "lifespanBegin": 2416265,
+                        "lifespanEnd": 2443870,
+                        "lineageConclusions": [],
+                        "living": false,
+                        "name": "Marguerite, Berthe, Louise Gayaudon",
+                        "nameConclusion": {
+                            "contributor": null,
+                            "details": {
+                                "detailsType": "NameDetails",
+                                "fullText": "Marguerite, Berthe, Louise Gayaudon",
+                                "nameForms": [
+                                    {
+                                        "familyPart": "Gayaudon",
+                                        "fullText": "Marguerite, Berthe, Louise Gayaudon",
+                                        "givenPart": "Marguerite, Berthe, Louise",
+                                        "lang": "und",
+                                        "prefixPart": null,
+                                        "script": "UNSPECIFIED",
+                                        "suffixPart": null
+                                    }
+                                ],
+                                "nameType": "",
+                                "preferredName": true,
+                                "sourceCount": 0,
+                                "style": "EUROTYPIC"
+                            },
+                            "id": null,
+                            "justification": "",
+                            "multiValued": false,
+                            "type": "NAME"
+                        },
+                        "noteCount": 0,
+                        "obsoleteIdWasRequested": false,
+                        "portraitUrl": null,
+                        "principlePerson": false,
+                        "readOnly": false,
+                        "relationshipId": "MKY6-3RL",
+                        "sourceCount": 6,
+                        "spaceId": "MMMM-MMM",
+                        "suggestions": null
+                    },
+                    {
+                        "discussionCount": 0,
+                        "dismissedSuggestions": {
+                            "dataQualityList": null,
+                            "empty": true,
+                            "researchSuggestionList": null
+                        },
+                        "gender": "MALE",
+                        "id": "G45M-K6V",
+                        "inPrivateSpace": false,
+                        "isDeleted": false,
+                        "isLiving": false,
+                        "lifeSpan": "1905\u2013D\u00e9c\u00e9d\u00e9",
+                        "lifeSpanDates": "",
+                        "lifespanBegin": 2416847,
+                        "lifespanEnd": 0,
+                        "lineageConclusions": [],
+                        "living": false,
+                        "name": "Jean Gayaudon",
+                        "nameConclusion": {
+                            "contributor": null,
+                            "details": {
+                                "detailsType": "NameDetails",
+                                "fullText": "Jean Gayaudon",
+                                "nameForms": [
+                                    {
+                                        "familyPart": "Gayaudon",
+                                        "fullText": "Jean Gayaudon",
+                                        "givenPart": "Jean",
+                                        "lang": "fr",
+                                        "prefixPart": null,
+                                        "script": "FRENCH",
+                                        "suffixPart": null
+                                    }
+                                ],
+                                "nameType": "",
+                                "preferredName": true,
+                                "sourceCount": 0,
+                                "style": "EUROTYPIC"
+                            },
+                            "id": null,
+                            "justification": "",
+                            "multiValued": false,
+                            "type": "NAME"
+                        },
+                        "noteCount": 0,
+                        "obsoleteIdWasRequested": false,
+                        "portraitUrl": null,
+                        "principlePerson": false,
+                        "readOnly": false,
+                        "relationshipId": "96B7-YNH",
+                        "sourceCount": 0,
+                        "spaceId": "MMMM-MMM",
+                        "suggestions": null
+                    }
+                ],
+                "coupleId": "L62N-WQ4_L62N-WW1",
+                "current": true,
+                "dismissedSuggestions": {
+                    "dataQualityList": null,
+                    "empty": true,
+                    "researchSuggestionList": null
+                },
+                "event": {
+                    "formalDate": "+1895-03-31",
+                    "originalDate": "31 mars 1895",
+                    "originalPlace": "Paris, \u00cele-de-France, France",
+                    "placeId": 442102,
+                    "standardDate": "31 mars 1895",
+                    "standardPlace": "Paris, \u00cele-de-France, France",
+                    "type": "MARRIAGE"
+                },
+                "relationshipId": "MXZZ-6WW",
+                "spouse1": {
+                    "discussionCount": 0,
+                    "dismissedSuggestions": {
+                        "dataQualityList": null,
+                        "empty": true,
+                        "researchSuggestionList": null
+                    },
+                    "gender": "MALE",
+                    "id": "L62N-WQ4",
+                    "inPrivateSpace": false,
+                    "isDeleted": false,
+                    "isLiving": false,
+                    "lifeSpan": "1866\u20131929",
+                    "lifeSpanDates": "",
+                    "lifespanBegin": 2402936,
+                    "lifespanEnd": 2425613,
+                    "living": false,
+                    "name": "Fran\u00e7ois Gayaudon",
+                    "nameConclusion": {
+                        "contributor": null,
+                        "details": {
+                            "detailsType": "NameDetails",
+                            "fullText": "Fran\u00e7ois Gayaudon",
+                            "nameForms": [
+                                {
+                                    "familyPart": "Gayaudon",
+                                    "fullText": "Fran\u00e7ois Gayaudon",
+                                    "givenPart": "Fran\u00e7ois",
+                                    "lang": "x-Latn",
+                                    "prefixPart": null,
+                                    "script": "ROMAN",
+                                    "suffixPart": null
+                                }
+                            ],
+                            "nameType": "",
+                            "preferredName": true,
+                            "sourceCount": 1,
+                            "style": "EUROTYPIC"
+                        },
+                        "id": null,
+                        "justification": "",
+                        "multiValued": false,
+                        "type": "NAME"
+                    },
+                    "noteCount": 0,
+                    "obsoleteIdWasRequested": false,
+                    "portraitUrl": null,
+                    "principlePerson": true,
+                    "readOnly": false,
+                    "sourceCount": 5,
+                    "spaceId": "MMMM-MMM",
+                    "suggestions": null
+                },
+                "spouse2": {
+                    "discussionCount": 0,
+                    "dismissedSuggestions": {
+                        "dataQualityList": null,
+                        "empty": true,
+                        "researchSuggestionList": null
+                    },
+                    "gender": "FEMALE",
+                    "id": "L62N-WW1",
+                    "inPrivateSpace": false,
+                    "isDeleted": false,
+                    "isLiving": false,
+                    "lifeSpan": "1871\u20131935",
+                    "lifeSpanDates": "",
+                    "lifespanBegin": 2404701,
+                    "lifespanEnd": 2427804,
+                    "living": false,
+                    "name": "Marie-Ad\u00e8le CHAUNIER",
+                    "nameConclusion": {
+                        "contributor": null,
+                        "details": {
+                            "detailsType": "NameDetails",
+                            "fullText": "Marie-Ad\u00e8le CHAUNIER",
+                            "nameForms": [
+                                {
+                                    "familyPart": "CHAUNIER",
+                                    "fullText": "Marie-Ad\u00e8le CHAUNIER",
+                                    "givenPart": "Marie-Ad\u00e8le",
+                                    "lang": "und",
+                                    "prefixPart": null,
+                                    "script": "UNSPECIFIED",
+                                    "suffixPart": null
+                                }
+                            ],
+                            "nameType": "",
+                            "preferredName": true,
+                            "sourceCount": 0,
+                            "style": "EUROTYPIC"
+                        },
+                        "id": null,
+                        "justification": "",
+                        "multiValued": false,
+                        "type": "NAME"
+                    },
+                    "noteCount": 0,
+                    "obsoleteIdWasRequested": false,
+                    "portraitUrl": null,
+                    "principlePerson": false,
+                    "readOnly": false,
+                    "sourceCount": 3,
+                    "spaceId": "MMMM-MMM",
+                    "suggestions": null
+                },
+                "suggestions": {
+                    "dataQualityList": null,
+                    "empty": false,
+                    "researchSuggestionList": [
+                        {
+                            "category": "RESEARCH_SUGGESTION",
+                            "contextId": null,
+                            "entityId": "MXZZ-6WW",
+                            "type": {
+                                "canBeDismissed": true,
+                                "category": "RESEARCH_SUGGESTION",
+                                "context": "COUPLE",
+                                "name": "POSSIBLE_CHILD_GAP_AT_END"
+                            }
+                        },
+                        {
+                            "category": "RESEARCH_SUGGESTION",
+                            "contextId": null,
+                            "entityId": "MXZZ-6WW",
+                            "type": {
+                                "canBeDismissed": true,
+                                "category": "RESEARCH_SUGGESTION",
+                                "context": "COUPLE",
+                                "name": "POSSIBLE_CHILD_GAP_IN_MIDDLE"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "status": "OK",
+    "statusText": null,
+    "statuses": null
+}
