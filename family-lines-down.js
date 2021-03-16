@@ -7,17 +7,9 @@ var numberOfDescendants = 0;
 var descendantsDepth = 0;
 var descendantsAtEachDepth = [];
 var linesAtEachDepth = {};
-/**
- *   Reads a chain and produces a string
- */
-function readChain(chain) {
-    var toreturn = "";
-    for (var i = 0; i < chain.length-1; i++) {
-        if (i > 0) toreturn += "-";
-        toreturn += chain[i].child;
-    }
-    return toreturn;
-}
+
+readChain = readChildrenChain;
+
 /**
  *  Callback for familyTreeGetDown keep track of down lines
  */
