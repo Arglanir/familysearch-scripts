@@ -122,32 +122,6 @@ def getFamilySearchDriver(quit_at_end=True):
             driver.quit()
 
 
-def testFamilyDepth():
-    with getFamilySearchDriver() as driver:
-        print("Going to person")
-        driver.get("https://www.familysearch.org/tree/person")
-
-        niceCountDown(10)
-
-        print("Importing recursive-search.js")
-        with open(os.path.join(JSFOLDER, "recursive-search.js"), "r") as fin:
-            content = fin.read()
-        #driver.execute_script()
-        print("Testing family-depth.js")
-        with open(os.path.join(JSFOLDER, "family-depth.js"), "r") as fin:
-            print("result:", driver.execute_script(content + fin.read()))
-
-        # how to recuperate asynchronous results?
-        while True:
-            niceCountDown(2)
-            result = driver.execute_script("return window.familydepthresult;")
-            print("Still processing: ", result["processing"], "Current:", len(result))
-            if not result["processing"]:
-                break
-        
-        for k, v in sorted(result.items()):
-            print(k, ":", len(v) if hasattr(v, '__len__') else v)
-
 
 def captureConsoleLog(driver):
     driver.execute_script("window.alllog = []; var old_console_log = console.log; console.log = function() {window.alllog.push(arguments);old_console_log.apply(null, arguments);};")
@@ -155,6 +129,24 @@ def captureConsoleLog(driver):
 
 def getConsoleLog(driver):
     return driver.execute_script("return window.alllog;")
+
+
+
+def followLogsUntil(driver, expected):
+    print("Reading logs until", expected)
+    indexline = 0
+    for i in range(20):
+        log = getConsoleLog(driver)
+        for iline in range(indexline, len(log)):
+            line = log[iline]
+            print(line)
+            if expected(line) if callable(expected) else expected == line[0]:
+                indexline = -1
+                break
+        if indexline < 0:
+            break
+        indexline = len(log)
+        time.sleep(1.)
 
 
 def niceCountDown(t, step=1):  # in seconds
@@ -276,20 +268,7 @@ familyTreeRecursive({callback:function({depth=0, from='UNKNOWN', infolocal={}, f
     console.log("''' + expected + '''");
 }});
 ''')
-        print("Reading logs")
-        indexline = 0
-        for i in range(20):
-            log = getConsoleLog(driver)
-            for iline in range(indexline, len(log)):
-                line = log[iline]
-                print(line)
-                if expected == line[0]:
-                    indexline = -1
-                    break
-            if indexline < 0:
-                break
-            indexline = len(log)
-            time.sleep(1.)
+        followLogsUntil(driver, expected)
         infolocal = driver.execute_script('''return window.infolocal;''')
         fullinfo = driver.execute_script('''return window.fullinfo;''')
 
