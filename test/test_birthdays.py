@@ -1,4 +1,7 @@
+from selenium.common.exceptions import JavascriptException
+
 from testbase import *
+import random
 
 
 def testBirthdays():
