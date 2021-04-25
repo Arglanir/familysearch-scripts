@@ -6,6 +6,7 @@ import sys
 import time
 import traceback
 
+
 try:
     import selenium
 except ImportError:
@@ -17,6 +18,8 @@ except ImportError:
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.remote.webelement import WebElement
+
 # from selenium.common.exceptions import JavascriptException
 
 DRIVER = webdriver.Firefox
@@ -66,35 +69,31 @@ JSFOLDER = os.path.dirname(SCRIPTFOLDER)
 CURRENTDRIVER = None
 
 
+def getCredentials(forWhat=""):
+    try:
+        username, password = open(os.path.join(SCRIPTFOLDER, "credentials%s.txt" % forWhat)).read().split()[:2]
+    except:
+        username = input("Type user name for %s:" % ("FamilySearch" if not forWhat else forWhat))
+        password = input("Type password:")
+        with open(os.path.join(SCRIPTFOLDER, "credentials%s.txt" % forWhat), "w") as fout:
+            fout.write(username)
+            fout.write(" ")
+            fout.write(password)
+            fout.write("\n")
+    return username, password
+
 @contextlib.contextmanager
 def getFamilySearchDriver(quit_at_end=True):
     global CURRENTDRIVER
-    destfoldertopath = os.path.join(SCRIPTFOLDER, EXECUTABLEFOLDER)
-    try:
-        if os.path.exists(destfoldertopath):
-            print("Update PATH")
-            os.environ["PATH"] = os.pathsep.join([os.environ["PATH"], destfoldertopath])
-        driver = DRIVERCREATION()
-    except Exception as e:
-        traceback.print_exc()
-        if not os.path.exists(destfoldertopath):
-            os.makedirs(destfoldertopath)
-        import urllib.request, zipfile, io
-        urltofetch = FILESTOFETCH.get(DRIVER)
-        print("Fetching", urltofetch)
-        filestream = urllib.request.urlopen(urltofetch)
-        datatowrite = filestream.read()
-        zfile = zipfile.ZipFile(io.BytesIO(datatowrite))
-        zfile.extractall(destfoldertopath)
-        os.environ["PATH"] = os.pathsep.join([os.environ["PATH"], destfoldertopath])
-        driver = DRIVERCREATION()
+
+    driver = getAnyDriver()
 
     # testing
     print("Getting auth page")
     driver.get("https://www.familysearch.org/auth/familysearch/login?fhf=true&returnUrl=%2F")
     niceCountDown(5)
     elem = driver.find_element_by_id('userName')
-    username, password = open(os.path.join(SCRIPTFOLDER, "credentials.txt")).read().split()[:2]
+    username, password = getCredentials()
     elem.send_keys(username)
     elem = driver.find_element_by_id('password')
     elem.send_keys(password + Keys.RETURN)
@@ -122,6 +121,28 @@ def getFamilySearchDriver(quit_at_end=True):
             driver.quit()
 
 
+def getAnyDriver():
+    destfoldertopath = os.path.join(SCRIPTFOLDER, EXECUTABLEFOLDER)
+    try:
+        if os.path.exists(destfoldertopath):
+            print("Update PATH")
+            os.environ["PATH"] = os.pathsep.join([os.environ["PATH"], destfoldertopath])
+        driver = DRIVERCREATION()
+    except Exception as e:
+        traceback.print_exc()
+        if not os.path.exists(destfoldertopath):
+            os.makedirs(destfoldertopath)
+        import urllib.request, zipfile, io
+        urltofetch = FILESTOFETCH.get(DRIVER)
+        print("Fetching", urltofetch)
+        filestream = urllib.request.urlopen(urltofetch)
+        datatowrite = filestream.read()
+        zfile = zipfile.ZipFile(io.BytesIO(datatowrite))
+        zfile.extractall(destfoldertopath)
+        os.environ["PATH"] = os.pathsep.join([os.environ["PATH"], destfoldertopath])
+        driver = DRIVERCREATION()
+    return driver
+
 
 def captureConsoleLog(driver):
     driver.execute_script("window.alllog = []; var old_console_log = console.log; console.log = function() {window.alllog.push(arguments);old_console_log.apply(null, arguments);};")
@@ -131,8 +152,7 @@ def getConsoleLog(driver):
     return driver.execute_script("return window.alllog;")
 
 
-
-def followLogsUntil(driver, expected):
+def followLogsUntil(driver, expected, timeBetweenChecks=1.):
     print("Reading logs until", expected)
     indexline = 0
     for i in range(20):
@@ -146,7 +166,11 @@ def followLogsUntil(driver, expected):
         if indexline < 0:
             break
         indexline = len(log)
-        time.sleep(1.)
+        time.sleep(timeBetweenChecks)
+
+
+def clearConsoleLog(driver):
+    return driver.execute_script("window.alllog = [];")
 
 
 def niceCountDown(t, step=1):  # in seconds
@@ -168,24 +192,57 @@ def getAttributes(driver, element):
     return attrs
 
 
-def selectThroughSR(driver, *selectors, analyseError=True, onlyTry=False):
+def setAttribute(driver: selenium.webdriver.Remote, element: WebElement, attribute: str, value: str):
+    """Set an attribute value"""
+    driver.execute_script("arguments[0].setAttribute(arguments[1], arguments[2]);", element, attribute, value)
+
+
+def selectThroughSR(driver: selenium.webdriver.Remote, *selectors: str,
+                    analyseError: bool = True, onlyTry: bool = False,
+                    origin: WebElement = None, allLast: bool = False) -> WebElement:
+    """
+    Select elements according to the DOM shadow-roots
+    :param driver: the driver to use (can be null if origin is given)
+    :param selectors: the CSS selectors
+        (add ! prefix in order to not go inside the shadow-root - the last one do not go inside the shadow-root anyway)
+    :param analyseError: internal option, allow looking at which element there was an error
+    :param onlyTry: do not return anything (use for testing if element chain is present)
+    :param origin: (optional) root of the search
+    :param allLast: return all end elements found
+    :return: the found element(s)
+    """
     # select element through shadow roots
     try:
+        args = []
         script = "var el = document;\n"
-        for selector in selectors:
-            script += 'el = el.querySelector("%s"); if (el.shadowRoot) el = el.shadowRoot;\n' % selector;
+        if origin is not None:
+            # origin is specified
+            script = "var el = arguments[0];\n"
+            args.append(origin)
+            if driver is None:
+                driver = origin.parent
+        for i, selector in enumerate(selectors):
+            if i == len(selectors) - 1 and allLast:
+                script += 'el = el.querySelectorAll("%s");\n' % selector;
+            else:
+                if selector.startswith("!"):
+                    script += 'el = el.querySelector("%s");\n' % selector[1:];
+                else:
+                    script += 'el = el.querySelector("%s"); if (el.shadowRoot) el = el.shadowRoot;\n' % selector;
         if not onlyTry:
             script += "return el;"
         #print(script)
-        return driver.execute_script(script)
+        return driver.execute_script(script, *args)
     except Exception as err:
         if analyseError:
             for i in range(1, len(selectors)+1):
                 try:
-                    selectThroughSR(driver, *selectors[:i], analyseError=False, onlyTry=True)
+                    selectThroughSR(driver, *selectors[:i], analyseError=False, onlyTry=True, origin=origin)
                 except:
-                    raise Exception("Error for {}".format(selectors[:i]))
-                    
+                    raise Exception("Error {!r} for {}".format(err, selectors[:i]))
+            else:
+                # no error, probably because error during "return el;"
+                raise
         else:
             raise
 
