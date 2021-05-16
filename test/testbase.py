@@ -36,6 +36,10 @@ def DRIVERCREATION_FF():
     profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/plain,text/html")
     profile.set_preference("browser.download.folderLis", "1")
     profile.set_preference("devtools.console.stdout.content", True)
+    # for an annoying bug
+    profile.set_preference("devtools.selfxss.count", 200)
+    profile.set_preference("dom.event.clipboardevents.enabled", False)
+
     return DRIVER(firefox_profile=profile, options=options#, desired_capabilities=capabilities
      )
 
@@ -100,19 +104,8 @@ def getFamilySearchDriver(quit_at_end=True):
     print("Logged in")
     niceCountDown(5)
     # check if cookies asking
-    iframes = driver.find_elements_by_tag_name("iframe")
-    if iframes:
-        print("Accepting cookies")
-        driver.switch_to.frame(iframes[0])
-        niceCountDown(5)
-        # <a class="call" tabindex="0" role="button">Accepter et continuer</a>
-        try:
-            e = driver.find_element_by_partial_link_text("Accepter")
-            e.click()
-        except:
-            print("No button Accepter")
+    driver.find_element_by_id("truste-consent-button").click()
 
-    driver.switch_to.parent_frame()
     CURRENTDRIVER=driver
     try:
         yield driver
@@ -122,6 +115,9 @@ def getFamilySearchDriver(quit_at_end=True):
 
 
 def getAnyDriver():
+    """
+    :return: a webdriver ready to be used. Remember to quit() it after use.
+    """
     destfoldertopath = os.path.join(SCRIPTFOLDER, EXECUTABLEFOLDER)
     try:
         if os.path.exists(destfoldertopath):
@@ -129,6 +125,7 @@ def getAnyDriver():
             os.environ["PATH"] = os.pathsep.join([os.environ["PATH"], destfoldertopath])
         driver = DRIVERCREATION()
     except Exception as e:
+        print("Error while starting driver first time...", file=sys.stderr)
         traceback.print_exc()
         if not os.path.exists(destfoldertopath):
             os.makedirs(destfoldertopath)
@@ -144,36 +141,52 @@ def getAnyDriver():
     return driver
 
 
-def captureConsoleLog(driver):
+def captureConsoleLog(driver: selenium.webdriver.Remote):
+    """Start capturing the console.log calls."""
     driver.execute_script("window.alllog = []; var old_console_log = console.log; console.log = function() {window.alllog.push(arguments);old_console_log.apply(null, arguments);};")
 
 
-def getConsoleLog(driver):
-    return driver.execute_script("return window.alllog;")
+def getConsoleLog(driver: selenium.webdriver.Remote, clear:bool=False):
+    """
+    :param clear: also clears the array
+    :return: all logs since the start of the capturing or from last clear."""
+    script = "return window.alllog;"
+    if clear:
+        script = "var temp = window.alllog; window.alllog = []; return temp;"
+    return driver.execute_script(script)
 
 
-def followLogsUntil(driver, expected, timeBetweenChecks=1.):
+def followLogsUntil(driver: selenium.webdriver.Remote, expected: callable or str, timeBetweenChecks=1., displayLogs:bool=True,
+                    maxIterations=20):
+    """Wait for a log line to appear. Displays the logs in python console too.
+    Waits for maximum maxIterations * timeBetweenChecks seconds.
+    :param driver: a webdriver
+    :param expected: a string (checked for equality) or a callable (called on each string argument array)
+    :param timeBetweenChecks: time between checks in seconds
+    :param displayLogs: whether to display the logs or not
+    :return: corresponding line
+    :raise: TimeoutError if line not found
+    """
     print("Reading logs until", expected)
-    indexline = 0
-    for i in range(20):
-        log = getConsoleLog(driver)
-        for iline in range(indexline, len(log)):
-            line = log[iline]
-            print(line)
+    for i in range(maxIterations):
+        log = getConsoleLog(driver, clear=True) or []
+        for line in log:
+            if displayLogs:
+                print(line)
             if expected(line) if callable(expected) else expected == line[0]:
-                indexline = -1
-                break
-        if indexline < 0:
-            break
+                return line
         indexline = len(log)
         time.sleep(timeBetweenChecks)
+    raise TimeoutError("Already waited for", maxIterations*timeBetweenChecks, "without success.")
 
 
-def clearConsoleLog(driver):
+def clearConsoleLog(driver: selenium.webdriver.Remote):
+    """Clears the remote log storage."""
     return driver.execute_script("window.alllog = [];")
 
 
 def niceCountDown(t, step=1):  # in seconds
+    # but doesn't work in pycharm nor eclipse :-(
     pad_str = ' ' * len('%d' % t)
     for i in range(t, 0, -step):
         sys.stdout.write(f"{i}{pad_str}\r")
