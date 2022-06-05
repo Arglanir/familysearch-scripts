@@ -521,7 +521,7 @@
                         "principlePerson": false,
                         "readOnly": false,
                         "relationshipId": "MP41-2R1",
-                        "sourceCount": 2,
+                        "sourceCount": 3,
                         "spaceId": "MMMM-MMM",
                         "suggestions": null
                     },
@@ -596,7 +596,7 @@
                         "isLiving": false,
                         "lifeSpan": "1905\u2013D\u00e9c\u00e9d\u00e9",
                         "lifeSpanDates": "",
-                        "lifespanBegin": 2416847,
+                        "lifespanBegin": 2417019,
                         "lifespanEnd": 0,
                         "lineageConclusions": [],
                         "living": false,
@@ -633,7 +633,7 @@
                         "principlePerson": false,
                         "readOnly": false,
                         "relationshipId": "96B7-YNH",
-                        "sourceCount": 0,
+                        "sourceCount": 1,
                         "spaceId": "MMMM-MMM",
                         "suggestions": null
                     }
