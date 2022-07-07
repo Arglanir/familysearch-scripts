@@ -1,4 +1,5 @@
 {
+    "ageAtDeath": 62,
     "birth": {
         "contributor": {
             "date": "23 ao\u00fbt 2020",
@@ -159,7 +160,7 @@
                 ],
                 "nameType": "BIRTH",
                 "preferredName": false,
-                "sourceCount": 0,
+                "sourceCount": 1,
                 "style": "EUROTYPIC"
             },
             "id": "0ca3ae4f-95c7-4dfa-bd6c-7be6d049400e",
@@ -191,8 +192,8 @@
                 "detailsType": "EventDetails",
                 "place": {
                     "geoCode": {
-                        "latitude": 48.86667,
-                        "longitude": 2.33333
+                        "latitude": 48.8667,
+                        "longitude": 2.3333
                     },
                     "id": 442102,
                     "localizedText": "Paris, \u00cele-de-France, France",
