@@ -49,6 +49,93 @@ function readParentChain(chain) {
     return chains.join('>');
 }
 
+// ConnectionPool in order not to send too many requests at the same time to FamilySearch
+// This leads to 429 errors
+// Control the max number of connections using connectionsPool.maxRunningJobs
+var connectionsPool = new function(){
+    // data and functions
+    var pool = this;
+    this.runningJobs = [];
+    this.maxRunningJobs = 4;
+    this.remainingJobs = [];
+    this.stats = {finished:0};
+    this.terminated = true;
+    // starts the next job if remaining slots
+    this.nextJob = function() {
+        while (pool.remainingJobs.length > 0 && pool.runningJobs.length < pool.maxRunningJobs) {
+            var job = pool.remainingJobs.shift();
+            pool.runningJobs.push(job);
+            job.perform();
+        }
+        // some logs to check if used and termination
+        if (!pool.terminated && pool.remainingJobs.length == 0 && pool.runningJobs.length == 0) {
+            console.log("Connection pool is now closed!");
+            console.log(pool.stats);
+            pool.terminated = true;
+        }
+    }
+    // indicate a job as terminated and run the next one
+    this.terminatedJob = function (job) { // called by ConnectionsPoolJobOrder.perform.finally
+        var index = pool.runningJobs.indexOf(job);
+        if (index >= 0) {
+            pool.stats.finished++;
+            pool.runningJobs.splice(index, 1);
+        } else {
+            console.log("impossible to find what to do with job that called " + job.urlToFetch);
+        }
+        pool.nextJob();
+    }
+    // add a new job. Use it instead of fetch() method directly
+    this.add = function(url) {
+        pool.terminated = false;
+        var job = new ConnectionsPoolJobOrder(url);
+        pool.remainingJobs.push(job);
+        setTimeout(pool.nextJob, 50);
+        return job;
+    }
+}
+// store the original "fetch" method
+var originalFetch = fetch;
+// a job order for the connectionsPool
+function ConnectionsPoolJobOrder(url) {// to be called with "new"
+    // data and function stores
+    var self = this;
+    this.urlToFetch = url;
+    this.state = 'created';
+    this.andThen = [];
+    this.andCatch = function() {};
+    this.andFinally = function() {};
+    // interface like normal fetch()
+    this.then = function (aFunction) {
+        self.andThen.push(aFunction);
+        return self;
+    };
+    this.catch = function (aFunction) {
+        self.andCatch = aFunction;
+        return self;
+    };
+    this.finally = function (aFunction) {
+        self.andFinally = aFunction;
+        return self;
+    };
+    // runner!
+    this.perform = function() {
+        self.state = 'running';
+        var current = originalFetch(self.urlToFetch);
+        while(self.andThen.length > 0) {
+            current = current.then(self.andThen.shift());
+        }
+        current = current.catch(self.andCatch);
+        current = current.finally(function() {
+            self.andFinally();
+            self.state = 'terminated';
+            connectionsPool.terminatedJob(self);
+        })
+    }
+}
+// replace the fetch method
+fetch = connectionsPool.add
+
 /**
  *   This function allows you to get information from your ancestors, recursively
  */
