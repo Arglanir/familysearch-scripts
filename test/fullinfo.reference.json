@@ -57,7 +57,8 @@
                         "relationshipId": "MTMG-6CJ",
                         "sourceCount": 5,
                         "spaceId": "MMMM-MMM",
-                        "suggestions": null
+                        "suggestions": null,
+                        "visibleToAll": true
                     },
                     {
                         "discussionCount": 0,
@@ -113,7 +114,8 @@
                         "relationshipId": "9SC7-BY3",
                         "sourceCount": 0,
                         "spaceId": "MMMM-MMM",
-                        "suggestions": null
+                        "suggestions": null,
+                        "visibleToAll": true
                     },
                     {
                         "discussionCount": 0,
@@ -169,7 +171,8 @@
                         "relationshipId": "9SC7-FXB",
                         "sourceCount": 0,
                         "spaceId": "MMMM-MMM",
-                        "suggestions": null
+                        "suggestions": null,
+                        "visibleToAll": true
                     },
                     {
                         "discussionCount": 0,
@@ -225,7 +228,8 @@
                         "relationshipId": "9SC7-JJG",
                         "sourceCount": 0,
                         "spaceId": "MMMM-MMM",
-                        "suggestions": null
+                        "suggestions": null,
+                        "visibleToAll": true
                     },
                     {
                         "discussionCount": 0,
@@ -281,7 +285,8 @@
                         "relationshipId": "9SC7-TWK",
                         "sourceCount": 0,
                         "spaceId": "MMMM-MMM",
-                        "suggestions": null
+                        "suggestions": null,
+                        "visibleToAll": true
                     }
                 ],
                 "coupleId": "L62J-ZY8_L2ZQ-DHZ",
@@ -352,7 +357,8 @@
                     "readOnly": false,
                     "sourceCount": 3,
                     "spaceId": "MMMM-MMM",
-                    "suggestions": null
+                    "suggestions": null,
+                    "visibleToAll": true
                 },
                 "spouse2": {
                     "discussionCount": 0,
@@ -405,7 +411,8 @@
                     "readOnly": false,
                     "sourceCount": 3,
                     "spaceId": "MMMM-MMM",
-                    "suggestions": null
+                    "suggestions": null,
+                    "visibleToAll": true
                 },
                 "suggestions": null
             }
@@ -467,7 +474,8 @@
                         "relationshipId": "MB6R-ZSK",
                         "sourceCount": 2,
                         "spaceId": "MMMM-MMM",
-                        "suggestions": null
+                        "suggestions": null,
+                        "visibleToAll": true
                     },
                     {
                         "discussionCount": 0,
@@ -523,7 +531,8 @@
                         "relationshipId": "MP41-2R1",
                         "sourceCount": 3,
                         "spaceId": "MMMM-MMM",
-                        "suggestions": null
+                        "suggestions": null,
+                        "visibleToAll": true
                     },
                     {
                         "discussionCount": 0,
@@ -579,7 +588,8 @@
                         "relationshipId": "MKY6-3RL",
                         "sourceCount": 6,
                         "spaceId": "MMMM-MMM",
-                        "suggestions": null
+                        "suggestions": null,
+                        "visibleToAll": true
                     },
                     {
                         "discussionCount": 0,
@@ -594,10 +604,10 @@
                         "inPrivateSpace": false,
                         "isDeleted": false,
                         "isLiving": false,
-                        "lifeSpan": "1905\u2013D\u00e9c\u00e9d\u00e9",
+                        "lifeSpan": "1905\u20131980",
                         "lifeSpanDates": "",
                         "lifespanBegin": 2417019,
-                        "lifespanEnd": 0,
+                        "lifespanEnd": 2444602,
                         "lineageConclusions": [],
                         "living": false,
                         "name": "Jean Gayaudon",
@@ -633,9 +643,10 @@
                         "principlePerson": false,
                         "readOnly": false,
                         "relationshipId": "96B7-YNH",
-                        "sourceCount": 1,
+                        "sourceCount": 2,
                         "spaceId": "MMMM-MMM",
-                        "suggestions": null
+                        "suggestions": null,
+                        "visibleToAll": true
                     }
                 ],
                 "coupleId": "L62N-WQ4_L62N-WW1",
@@ -706,7 +717,8 @@
                     "readOnly": false,
                     "sourceCount": 5,
                     "spaceId": "MMMM-MMM",
-                    "suggestions": null
+                    "suggestions": null,
+                    "visibleToAll": true
                 },
                 "spouse2": {
                     "discussionCount": 0,
@@ -757,9 +769,10 @@
                     "portraitUrl": null,
                     "principlePerson": false,
                     "readOnly": false,
-                    "sourceCount": 3,
+                    "sourceCount": 4,
                     "spaceId": "MMMM-MMM",
-                    "suggestions": null
+                    "suggestions": null,
+                    "visibleToAll": true
                 },
                 "suggestions": {
                     "dataQualityList": null,

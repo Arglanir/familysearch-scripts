@@ -160,7 +160,7 @@
                 ],
                 "nameType": "BIRTH",
                 "preferredName": false,
-                "sourceCount": 1,
+                "sourceCount": 0,
                 "style": "EUROTYPIC"
             },
             "id": "0ca3ae4f-95c7-4dfa-bd6c-7be6d049400e",
@@ -217,5 +217,6 @@
     "skeleton": false,
     "sourceCount": 5,
     "spaceId": "MMMM-MMM",
-    "templeRollupStatus": "RESERVED"
+    "templeRollupStatus": "RESERVED",
+    "visibleToAll": true
 }
