@@ -55,7 +55,7 @@
                         "principlePerson": true,
                         "readOnly": false,
                         "relationshipId": "MTMG-6CJ",
-                        "sourceCount": 5,
+                        "sourceCount": 6,
                         "spaceId": "MMMM-MMM",
                         "suggestions": null,
                         "visibleToAll": true
@@ -355,7 +355,7 @@
                     "portraitUrl": null,
                     "principlePerson": false,
                     "readOnly": false,
-                    "sourceCount": 3,
+                    "sourceCount": 4,
                     "spaceId": "MMMM-MMM",
                     "suggestions": null,
                     "visibleToAll": true
@@ -409,7 +409,7 @@
                     "portraitUrl": null,
                     "principlePerson": false,
                     "readOnly": false,
-                    "sourceCount": 3,
+                    "sourceCount": 4,
                     "spaceId": "MMMM-MMM",
                     "suggestions": null,
                     "visibleToAll": true
@@ -702,7 +702,7 @@
                             ],
                             "nameType": "",
                             "preferredName": true,
-                            "sourceCount": 1,
+                            "sourceCount": 2,
                             "style": "EUROTYPIC"
                         },
                         "id": null,
@@ -715,7 +715,7 @@
                     "portraitUrl": null,
                     "principlePerson": true,
                     "readOnly": false,
-                    "sourceCount": 5,
+                    "sourceCount": 6,
                     "spaceId": "MMMM-MMM",
                     "suggestions": null,
                     "visibleToAll": true
@@ -769,7 +769,7 @@
                     "portraitUrl": null,
                     "principlePerson": false,
                     "readOnly": false,
-                    "sourceCount": 4,
+                    "sourceCount": 5,
                     "spaceId": "MMMM-MMM",
                     "suggestions": null,
                     "visibleToAll": true

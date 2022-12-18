@@ -342,9 +342,9 @@ familyTreeRecursive({callback:function({depth=0, from='UNKNOWN', infolocal={}, f
         infolocal = driver.execute_script('''return window.infolocal;''')
         fullinfo = driver.execute_script('''return window.fullinfo;''')
 
-        print(infolocal)
-        print(fullinfo)
-        create_if_existing = False
+        print("infolocal:", infolocal)
+        print("fullinfo:", fullinfo)
+        create_if_existing = False#True
         import json
         for name, dico in dict(infolocal=infolocal, fullinfo=fullinfo).items():
             create = create_if_existing
@@ -352,15 +352,20 @@ familyTreeRecursive({callback:function({depth=0, from='UNKNOWN', infolocal={}, f
             if not os.path.exists(expectedfilename):
                 print("File", expectedfilename, "doesn't exist. Creating it...")
                 create = True
-            if os.path.exists(expectedfilename) and not create:
+            if os.path.exists(expectedfilename):
                 with open(expectedfilename, "r") as fin:
                     expected = json.load(fin)
-                    assert expected == dico, ("Different dictionary " + name +
-                                              ":\n  got:      " + repr(dico) +
-                                                "\n  expected: " + repr(expected))
-            elif create:
-                with open(expectedfilename, "w") as fout:
-                    json.dump(dico, fout, sort_keys=True, indent=4)
+            if not create:
+                assert expected == dico, ("Different dictionary " + name +
+                                          ":\n  got:      " + repr(dico) +
+                                            "\n  expected: " + repr(expected))
+            elif expected != dico:
+                if dico is not None:
+                    print("Different dictionnaries ! Rewriting", expectedfilename)
+                    with open(expectedfilename, "w") as fout:
+                        json.dump(dico, fout, sort_keys=True, indent=4)
+                else:
+                    print("There must have been a problem as it is null, not rewriting", expectedfilename)
         print("Both infolocal and fullinfo match.")
 
 

@@ -32,7 +32,7 @@
                 "normalizedText": "Montboucher, Creuse, Limousin, France",
                 "originalText": "Montboucher, Sargnat, Canton de Bourganeuf, CREUSE, France"
             },
-            "sourceCount": 1,
+            "sourceCount": 2,
             "title": "",
             "type": "BIRTH"
         },
@@ -88,7 +88,7 @@
         "details": {
             "detailsType": "GenderDetails",
             "gender": "MALE",
-            "sourceCount": 1
+            "sourceCount": 2
         },
         "id": "0c5bf392-13c9-4b4d-bb46-76ec9546dce5",
         "justification": null,
@@ -127,7 +127,7 @@
             ],
             "nameType": "BIRTH",
             "preferredName": true,
-            "sourceCount": 1,
+            "sourceCount": 2,
             "style": "EUROTYPIC"
         },
         "id": "991a0a6e-291e-4f21-a0db-159dd32b100f",
@@ -215,7 +215,7 @@
     "readOnly": false,
     "size": "CARD",
     "skeleton": false,
-    "sourceCount": 5,
+    "sourceCount": 6,
     "spaceId": "MMMM-MMM",
     "templeRollupStatus": "RESERVED",
     "visibleToAll": true
