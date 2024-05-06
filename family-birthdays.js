@@ -152,9 +152,13 @@ function displayListWhenFinished({shareddata={persons:{}}}={}) {
         
         var todisplay = "<h3>Inconnu</h3>\n";
         var lastmonth = 0;
-        var months = ["?", "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]
+        var months = ["?", "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+        var data_for_multiple = "";
         for (var i = 0; i < list.length; i++) {
             person = list[i];
+            if (person.birth != "?") {
+                data_for_multiple += person.birth.replace('+','') + " " + person.name + "\n";
+            }
             var t = person.birth.split('-');
             var month = t.length >= 2 ? parseInt(t[1]) : 0;
             if (month != lastmonth) {
@@ -213,6 +217,10 @@ var today = new Date();
 var classname = 'anniv-' + ("0"+today.getDate()).slice(-2) + "-" + ("0"+(today.getMonth() + 1)).slice(-2);
 style.innerHTML = '.'+classname+' { background-color: #FF0; } .'+classname+'::before { content: "\\\\1F973 "; } .'+classname+'::after { content: " \\\\1f389"; } ';
 document.getElementsByTagName('head')[0].appendChild(style);
+var annivlink = document.createElement('a');
+annivlink.href = "https://arglanir.github.io/anniversaires_systeme_solaire_multiples.html?d=` + encodeURI(data_for_multiple) + `";
+annivlink.innerHTML = "<hr/><b>Dans le système solaire...</b>";
+document.body.appendChild(annivlink);
 // scroll month to view
 setTimeout(function() {document.getElementById('month-' + (today.getMonth() + 1)).scrollIntoView();}, 500);
 </script>`+

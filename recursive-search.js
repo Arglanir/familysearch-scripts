@@ -60,6 +60,11 @@ var connectionsPool = new function(){
     this.remainingJobs = [];
     this.stats = {finished:0};
     this.terminated = true;
+    var toRunOnFinish = [];
+    // add a hook on termination
+    this.onFinish = function (callback) {
+        toRunOnFinish.push(callback);
+    }
     // starts the next job if remaining slots
     this.nextJob = function() {
         while (pool.remainingJobs.length > 0 && pool.runningJobs.length < pool.maxRunningJobs) {
@@ -72,6 +77,15 @@ var connectionsPool = new function(){
             console.log("Connection pool is now closed!");
             console.log(pool.stats);
             pool.terminated = true;
+            while (pool.terminated && toRunOnFinish.length > 0) {
+                console.log("Calling "+toRunOnFinish.length+" onFinish callbacks");
+                var callback = toRunOnFinish.shift();
+                try {
+                    callback();
+                } catch(e) {
+                    console.log(e);
+                }
+            }
         }
     }
     // indicate a job as terminated and run the next one
@@ -134,7 +148,7 @@ function ConnectionsPoolJobOrder(url) {// to be called with "new"
     }
 }
 // replace the fetch method
-fetch = connectionsPool.add
+fetch = connectionsPool.add;
 
 /**
  *   This function allows you to get information from your ancestors, recursively
@@ -145,7 +159,7 @@ function familyTreeRecursive({
     // @param from: family search identifier XXXX-YYY
     // @param depthmax: maximal depth
     // @param callbackEnd: called at the end
-    callback=function(){{depth=0, from='UNKNOWN', infolocal={}, fullinfo={}, chain=[]}},
+    callback=function({depth=0, from='UNKNOWN', infolocal={}, fullinfo={}, chain=[]}){},
     from=getCurrentId(),
     depthmax=10,
     callbackBeforePerson=function(identifier) {return true;},
@@ -249,7 +263,7 @@ function familyTreeGetDown({
     // @param from: family search identifier XXXX-YYY
     // @param depthmax: maximal depth
     // @param callbackEnd: called at the end
-    callback=function(){{depth=0, from='UNKNOWN', infolocal={}, fullinfo={}, chain=[]}},
+    callback=function({depth=0, from='UNKNOWN', infolocal={}, fullinfo={}, chain=[]}){},
     from=getCurrentId(),
     depthmax=10,
     callbackBeforePerson=function(identifier) {return true;},
@@ -259,12 +273,14 @@ function familyTreeGetDown({
     // @param currentChain: the current chain to the current 'from' (not included) [{id, name, nextisfather}]
     // @param currentalgo: shared parameters for the current process
     depth=0, currentChain=[],
+    includeSpouses=false,
     shareddata={},
     currentalgo={totaldone:0, currentmax:0, errors:0}}={}) {
     if (!callbackBeforePerson(from)) {
         return;
     }
     currentalgo.currentmax++;
+    
     //console.log("After call:" + from + " " + objectId(currentalgo));
     fetch(familyTreeRecursive_urlSimple(from)
     )
@@ -283,6 +299,15 @@ function familyTreeGetDown({
                 if (depth < depthmax && fullinfo.data.spouses) {
                     var childCounter = 0;
                     for (var i=0; i < fullinfo.data.spouses.length; i++) {
+                      if (includeSpouses) {
+                        // bug, the old spouse may not have children
+                        var couple = fullinfo.data.spouses[i];
+                        var coupleId = couple.coupleId;
+                        var otherId = coupleId.replace(from, "").replace("_", "");
+                        if (from=="G73C-J5W") console.log("Including spouse" + otherId);
+                        var arguments = {callback:callback, depthmax:depthmax, callbackEnd:callbackEnd, currentChain:currentChain, depth:depth, currentalgo:currentalgo, shareddata:shareddata, from:otherId};
+                        familyTreeGetDown(arguments);
+                      }
                       if (!fullinfo.data.spouses[i].children) continue;
                       for (var j=0; j < fullinfo.data.spouses[i].children.length; j++) {
                         var child = fullinfo.data.spouses[i].children[j];
@@ -291,8 +316,7 @@ function familyTreeGetDown({
                         // new chain in order to tell we are in a father
                         var newChain = currentChain.slice(0);
                         newChain.push({id:from, name:infolocal.name, child:childCounter});
-                        var arguments = {callback:callback, depthmax:depthmax, callbackEnd:callbackEnd, currentChain:newChain, depth:depth+1, currentalgo:currentalgo, shareddata:shareddata,
-                        from:child.id};
+                        var arguments = {callback:callback, depthmax:depthmax, callbackEnd:callbackEnd, currentChain:newChain, depth:depth+1, currentalgo:currentalgo, shareddata:shareddata, includeSpouses:includeSpouses, from:child.id};
                         familyTreeGetDown(arguments);
                     }
                   }
@@ -341,6 +365,23 @@ function getBirthDate(infolocal) {
 }
 function getDeathDate(infolocal) {
     return getFullDate(infolocal.deathlikeConclusion ? infolocal.deathlikeConclusion : infolocal.death);
+}
+/** Returns some data from json */
+function getFirstJsonInfo(infolocal, ...attributes) {
+    if (attributes.length == 0) {
+        return infolocal;
+    }
+    var first = attributes.shift();
+    if (!first.shift) {// not an array !
+        first = [first];
+    }
+    for (var attribute of first) {
+        var newinfo = infolocal[attribute];
+        if (!newinfo) continue;
+        var toreturn = getFirstJsonInfo(newinfo, ...attributes);
+        if (!!toreturn) return toreturn;
+    }
+    return false;
 }
 
 /**
