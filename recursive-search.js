@@ -23,7 +23,8 @@ function familyTreeRecursive_urlSimple(from) {
 
 /** URL for full information */
 function familyTreeRecursive_urlComplete(from) {
-    return "/service/tree/tree-data/family-members/person/" + from;
+    return "/service/tree/tree-data/r9/family-members/person/"+from+"?includePhotos=true&treeId=PRIVATE"
+    //return "/service/tree/tree-data/family-members/person/" + from;
 }
 
 /**
@@ -56,9 +57,9 @@ var connectionsPool = new function(){
     // data and functions
     var pool = this;
     this.runningJobs = [];
-    this.maxRunningJobs = 4;
+    this.maxRunningJobs = 3;
     this.remainingJobs = [];
-    this.stats = {finished:0};
+    this.stats = {finished:0,submitted:0,errors:0};
     this.terminated = true;
     var toRunOnFinish = [];
     // add a hook on termination
@@ -101,6 +102,7 @@ var connectionsPool = new function(){
     }
     // add a new job. Use it instead of fetch() method directly
     this.add = function(url) {
+        pool.stats.submitted++;
         pool.terminated = false;
         var job = new ConnectionsPoolJobOrder(url);
         pool.remainingJobs.push(job);
@@ -136,15 +138,24 @@ function ConnectionsPoolJobOrder(url) {// to be called with "new"
     this.perform = function() {
         self.state = 'running';
         var current = originalFetch(self.urlToFetch);
-        while(self.andThen.length > 0) {
-            current = current.then(self.andThen.shift());
+        // TODO: catch error https://www.tjvantoll.com/2015/09/13/fetch-and-errors/
+        // https://knowledge.here.com/csm_kb?id=public_kb_csm_details&number=KB0022261 response.status response.ok
+        for (var funct of self.andThen) {
+            current = current.then(funct);
         }
-        current = current.catch(self.andCatch);
+        //while(self.andThen.length > 0) {
+        //    current = current.then(self.andThen.shift());
+        //}
+        current = current.catch(function(){
+            var newArguments = [...arguments];
+            connectionsPool.stats.errors++;
+            self.andCatch(...newArguments);
+        });
         current = current.finally(function() {
             self.andFinally();
             self.state = 'terminated';
             connectionsPool.terminatedJob(self);
-        })
+        });
     }
 }
 // replace the fetch method
@@ -158,7 +169,8 @@ function familyTreeRecursive({
     // @param callback: function({depth, from, infolocal, fullinfo})
     // @param from: family search identifier XXXX-YYY
     // @param depthmax: maximal depth
-    // @param callbackEnd: called at the end
+    // @param callbackBeforePerson: called before fetching anything, function given the id, if it returns true, it will proceed with the id
+    // @param callbackEnd: called at the end, after all processing
     callback=function({depth=0, from='UNKNOWN', infolocal={}, fullinfo={}, chain=[]}){},
     from=getCurrentId(),
     depthmax=10,
@@ -177,6 +189,7 @@ function familyTreeRecursive({
             callbackEnd({visited:currentalgo.totaldone, errors:currentalgo.errors, shareddata:shareddata})
         }
     }
+    if (from == "UNKNOWN") return familyTreeRecursiveCheckEnd();
     if (!callbackBeforePerson(from)) {
         return;
     }
@@ -196,10 +209,10 @@ function familyTreeRecursive({
                     // do not go deeper
                     return;
                 }
-                if (depth < depthmax && fullinfo.data.parents) {
-                    for (var i=0; i < fullinfo.data.parents.length; i++) {
+                if (depth < depthmax && fullinfo.parents) {
+                    for (var i=0; i < fullinfo.parents.length; i++) {
                         //console.log("In "+from+", parent " + i)
-                        //console.log(fullinfo.data.parents[i]);
+                        //console.log(fullinfo.parents[i]);
                         // new chain in order to tell we are in a father
                         var newChain = currentChain.slice(0);
                         newChain.push({id:from, name:infolocal.name, nextisfather:true});
@@ -207,14 +220,14 @@ function familyTreeRecursive({
                                         currentChain:newChain, depth:depth+1, currentalgo:currentalgo, shareddata:shareddata};
                         //console.log("Before any call:" + from + " " + objectId(currentalgo) + " " + objectId(arguments.currentalgo));
                         // checking father (husband of couple)
-                        if (typeof fullinfo.data.parents[i].husband != "undefined") {
-                            arguments.from = fullinfo.data.parents[i].husband.id;
+                        if (typeof fullinfo.parents[i].parent1 != "undefined") {
+                            arguments.from = fullinfo.parents[i].parent1.id;
                             //console.log("Before call1:" + arguments.from + " " + objectId(currentalgo) + " " + objectId(arguments.currentalgo));
                             familyTreeRecursive(arguments);
                         }
-                        if (typeof fullinfo.data.parents[i].wife != "undefined") {
+                        if (typeof fullinfo.parents[i].parent2 != "undefined") {
                             // new parameters in order to tell we are in a mother
-                            arguments.from = fullinfo.data.parents[i].wife.id;
+                            arguments.from = fullinfo.parents[i].parent2.id;
                             arguments.currentChain = newChain = currentChain.slice(0);
                             newChain.push({id:from, name:infolocal.name, nextisfather:false});
                             arguments.currentalgo = currentalgo;
@@ -222,11 +235,11 @@ function familyTreeRecursive({
                             familyTreeRecursive(arguments);
                         }
                         ["spouse1", "spouse2"].forEach(function (attr) {
-                            if (typeof fullinfo.data.parents[i][attr] != "undefined") {
+                            if (typeof fullinfo.parents[i][attr] != "undefined") {
                                 // new parameters in order to tell we are in a mother or father
                                 var arguments = {callback:callback, depthmax:depthmax, callbackEnd:callbackEnd, callbackBeforePerson:callbackBeforePerson,
                                                 currentChain:newChain, depth:depth+1, currentalgo:currentalgo, shareddata:shareddata};
-                                var attrvalue = fullinfo.data.parents[i][attr];
+                                var attrvalue = fullinfo.parents[i][attr];
                                 arguments.from = attrvalue.id;
                                 if (arguments.from == "UNKNOWN") return;
                                 arguments.currentChain = newChain = currentChain.slice(0);
@@ -296,21 +309,23 @@ function familyTreeGetDown({
                     // do not go deeper
                     return;
                 }
-                if (depth < depthmax && fullinfo.data.spouses) {
+                if (depth < depthmax && fullinfo.spouses) {
                     var childCounter = 0;
-                    for (var i=0; i < fullinfo.data.spouses.length; i++) {
+                    for (var i=0; i < fullinfo.spouses.length; i++) {
                       if (includeSpouses) {
                         // bug, the old spouse may not have children
-                        var couple = fullinfo.data.spouses[i];
+                        var couple = fullinfo.spouses[i];
                         var coupleId = couple.coupleId;
-                        var otherId = coupleId.replace(from, "").replace("_", "");
-                        if (from=="G73C-J5W") console.log("Including spouse" + otherId);
-                        var arguments = {callback:callback, depthmax:depthmax, callbackEnd:callbackEnd, currentChain:currentChain, depth:depth, currentalgo:currentalgo, shareddata:shareddata, from:otherId};
-                        familyTreeGetDown(arguments);
+                        if (coupleId) {
+                            var otherId = coupleId.replace(from, "").replace("_", "");
+                            if (from=="G73C-J5W") console.log("Including spouse " + otherId);
+                            var arguments = {callback:callback, depthmax:depthmax, callbackEnd:callbackEnd, currentChain:currentChain, depth:depth, currentalgo:currentalgo, shareddata:shareddata, from:otherId};
+                            familyTreeGetDown(arguments);
+                        }
                       }
-                      if (!fullinfo.data.spouses[i].children) continue;
-                      for (var j=0; j < fullinfo.data.spouses[i].children.length; j++) {
-                        var child = fullinfo.data.spouses[i].children[j];
+                      if (!fullinfo.spouses[i].children) continue;
+                      for (var j=0; j < fullinfo.spouses[i].children.length; j++) {
+                        var child = fullinfo.spouses[i].children[j];
                         childCounter++;
                         //console.log("In "+from+", child " + i + "-"+j)
                         // new chain in order to tell we are in a father

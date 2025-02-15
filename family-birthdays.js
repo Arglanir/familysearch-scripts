@@ -6,9 +6,9 @@ Or a list of families, with relationships and birthdays.
 */
 
 /**
- *  Callback for familyTreeGetDown keep track of down lines
+ *  Callback for familyTreeRecursive to store people
  */
-function storeInfoAboutDescendant({depth=0, from='UNKNOWN', infolocal={}, fullinfo={}, chain=[], shareddata={persons:{}}}={}) {
+function storeInfoAboutPerson({depth=0, from='UNKNOWN', infolocal={}, fullinfo={}, chain=[], shareddata={persons:{}}}={}) {
     // id => {name, relationship, birth, death}
     var persons = shareddata.persons;
 
@@ -25,18 +25,18 @@ function storeInfoAboutDescendant({depth=0, from='UNKNOWN', infolocal={}, fullin
     
     // what to display?
     var extrainfo = "";
-    person = {name:infolocal.name, birth:bdate, death:ddate};
+    person = {name:infolocal.name, birth:bdate, death:ddate, depth:depth};
     person.male = infolocal.gender == "MALE";
     person.parents = [];
 
-    if (fullinfo.data.spouses) {
-        for (var i=0; i < fullinfo.data.spouses.length; i++) {
-            var relationship = fullinfo.data.spouses[i];
-            if (!relationship.current) continue;
-            if (relationship.spouse1 && relationship.spouse1.id != infolocal.id) {
-                person.spouse = relationship.spouse1.id;
-            } else if (relationship.spouse2 && relationship.spouse2.id != infolocal.id) {
-                person.spouse = relationship.spouse2.id;
+    if (fullinfo.spouses) {
+        for (var i=0; i < fullinfo.spouses.length; i++) {
+            var relationship = fullinfo.spouses[i];
+            if (!relationship.preferred) continue;
+            if (relationship.parent1 && relationship.parent1.id != infolocal.id) {
+                person.spouse = relationship.parent1.id;
+            } else if (relationship.parent2 && relationship.parent2.id != infolocal.id) {
+                person.spouse = relationship.parent2.id;
             }
             var stillSpouse = true;
             if (person.spouse) {
@@ -51,47 +51,60 @@ function storeInfoAboutDescendant({depth=0, from='UNKNOWN', infolocal={}, fullin
             person.stillSpouse = stillSpouse;
         }
     }
-    if (fullinfo.data.parents) {
-        for (var i=0; i < fullinfo.data.parents.length; i++) {
-            var relationship = fullinfo.data.parents[i];
-            if (relationship.spouse1 && relationship.spouse1.id) {
-                person.parents.push(relationship.spouse1.id);
+    if (fullinfo.parents) {
+        for (var i=0; i < fullinfo.parents.length; i++) {
+            var relationship = fullinfo.parents[i];
+            if (relationship.parent1 && relationship.parent1.id) {
+                person.parents.push(relationship.parent1.id);
             }
-            if (relationship.spouse2 && relationship.spouse2.id != infolocal.id) {
-                person.parents.push(relationship.spouse2.id);
+            if (relationship.parent2 && relationship.parent2.id != infolocal.id) {
+                person.parents.push(relationship.parent2.id);
             }
         }
     }
     persons[infolocal.id] = person;
     
+    // call also on parents: not needed, done by familyTreeRecursive
+    
+    // display
+    console.log(`${depth}: ${infolocal.name} https://www.familysearch.org/tree/person/details/${infolocal.id} ${bdate} ${ddate}`);
+}
+
+/**
+ *  Callback for familyTreeGetDown keep track of down lines
+ */
+function storeInfoAboutDescendant({depth=0, from='UNKNOWN', infolocal={}, fullinfo={}, chain=[], shareddata={persons:{}}}={}) {
+    // id => {name, relationship, birth, death}
+    var persons = shareddata.persons;
+    
+    var returned = storeInfoAboutPerson({depth:depth, from:from, infolocal:infolocal, fullinfo:fullinfo, chain:chain, shareddata:shareddata});
+    if (returned == "stop") return returned;
+    
     // call also on spouse and then his children
-    if (fullinfo.data.spouses) {
-        for (var i=0; i < fullinfo.data.spouses.length; i++) {
-            if (fullinfo.data.spouses[i].children) {
+    if (fullinfo.spouses) {
+        for (var i=0; i < fullinfo.spouses.length; i++) {
+            if (fullinfo.spouses[i].children) {
                 // FIXME: it seems that when there is no spouse, there is no children...
-                for (var j=0; j < fullinfo.data.spouses[i].children.length; j++) {
-                    var child = fullinfo.data.spouses[i].children[j];
+                for (var j=0; j < fullinfo.spouses[i].children.length; j++) {
+                    var child = fullinfo.spouses[i].children[j];
                     if (!child || !child.id) continue;
                     if (persons[child.id]) continue; // do not analyse
                     persons[child.id] = "called";
                 }
             }
-            for (var sp in {spouse1:1, spouse2:2}) {
-                if (!fullinfo.data.spouses[i] || !fullinfo.data.spouses[i][sp] || !fullinfo.data.spouses[i][sp].id) continue;
-                if (fullinfo.data.spouses[i][sp].id == 'UNKNOWN') continue;
-                var spid = fullinfo.data.spouses[i][sp].id;
+            for (var sp in {parent1:1, parent2:2}) {
+                if (!fullinfo.spouses[i] || !fullinfo.spouses[i][sp] || !fullinfo.spouses[i][sp].id) continue;
+                if (fullinfo.spouses[i][sp].id == 'UNKNOWN') continue;
+                var spid = fullinfo.spouses[i][sp].id;
                 if (persons[spid]) continue; // do not analyse
                 persons[spid] = "called";
-                console.log(`Also calling for ${spid} ${fullinfo.data.spouses[i][sp].name}`);
+                console.log(`Also calling for ${spid} ${fullinfo.spouses[i][sp].name}`);
                 var newshareddata = {};
                 Object.assign(newshareddata, shareddata);
                 familyTreeGetDown({callback:storeInfoAboutDescendant, from:spid, depthmax:50, depth:depth, callbackEnd:displayListWhenFinished, shareddata:shareddata});
             }
         }
     }
-    
-    // display
-    console.log(`${depth}: ${infolocal.name} https://www.familysearch.org/tree/person/details/${infolocal.id} ${bdate} ${ddate}`);
 }
 
 function download(filename, text) {
@@ -203,6 +216,8 @@ function displayListWhenFinished({shareddata={persons:{}}}={}) {
             todisplay += "</span><br/>\r\n";
         }
         
+        var filename = shareddata.filename || "anniversaires.html";
+        
         download("anniversaires.html", 
             '<!doctype html><html>\n' +
             '<!-- Généré le ' + new Date() + '-->\n' +
@@ -238,4 +253,12 @@ function getFamilyList({from=getCurrentId(), depthmax=50}={}) {
     // call
     familyTreeGetDown({callback:storeInfoAboutDescendant, from:from, depthmax:depthmax, callbackEnd:displayListWhenFinished, shareddata:{persons:persons}});
 }
-getFamilyList();
+function getKoreanFamilyList({from=getCurrentId(), depthmax=15}={}) {
+    // reset
+    var persons = {};
+    // call
+    familyTreeRecursive({callback:storeInfoAboutPerson, from:from, depthmax:depthmax, callbackEnd:displayListWhenFinished, shareddata:{persons:persons, filename:"anniversaires_coreens.html"}});
+}
+
+//getFamilyList();
+getKoreanFamilyList();
