@@ -1,4 +1,4 @@
-
+/** Allows returning an unique identifier for an object (for debug purposes) */
 var objectId = (function () {
     var allObjects = [];
 
@@ -323,9 +323,12 @@ function familyTreeGetDown({
                             familyTreeGetDown(arguments);
                         }
                       }
+                      if (from=="LJ9S-55K") console.log("Checking children of spouse " + i);
                       if (!fullinfo.spouses[i].children) continue;
+                      if (from=="LJ9S-55K") console.log("Checking children of spouse " + i + ", number of children: " + fullinfo.spouses[i].children.length);
                       for (var j=0; j < fullinfo.spouses[i].children.length; j++) {
                         var child = fullinfo.spouses[i].children[j];
+                        if (child.child) child = child.child;
                         childCounter++;
                         //console.log("In "+from+", child " + i + "-"+j)
                         // new chain in order to tell we are in a father
@@ -407,4 +410,9 @@ function getCurrentId() {
 }
 
 // for infolocal, check test/infolocal.reference.json
+fetch(familyTreeRecursive_urlComplete("L62N-WQ4")).then(response => {
+                return response.json();
+            }).then(function (fullinfo) {
+                console.log(JSON.stringify(fullinfo, null, 4));
+            });
 // for fullinfo, check test/fullinfo.reference.json

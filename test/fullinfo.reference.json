@@ -1,41 +1,33 @@
 {
-    "data": {
-        "parents": [
-            {
-                "children": [
-                    {
+    "parents": [
+        {
+            "children": [
+                {
+                    "child": {
+                        "collaborateCount": 0,
+                        "deleted": false,
                         "discussionCount": 0,
-                        "dismissedSuggestions": {
-                            "dataQualityList": null,
-                            "empty": true,
-                            "researchSuggestionList": null
-                        },
-                        "eclipsesAnotherRelationship": false,
                         "gender": "MALE",
+                        "hasMultipleFamiliesAsChild": false,
+                        "hasMultipleFamiliesAsParent": false,
+                        "hasSpouseOrChildren": false,
                         "id": "L62N-WQ4",
-                        "inPrivateSpace": false,
-                        "isDeleted": false,
-                        "isLiving": false,
-                        "lifeSpan": "1866\u20131929",
-                        "lifeSpanDates": "",
-                        "lifespanBegin": 2402936,
-                        "lifespanEnd": 2425613,
-                        "lineageConclusions": [],
+                        "lifespan": "1866–1929",
                         "living": false,
-                        "name": "Fran\u00e7ois Gayaudon",
+                        "memoryCount": 0,
+                        "name": "François Gayaudon",
                         "nameConclusion": {
                             "contributor": null,
                             "details": {
                                 "detailsType": "NameDetails",
-                                "fullText": "Fran\u00e7ois Gayaudon",
+                                "fullText": "François Gayaudon",
                                 "nameForms": [
                                     {
                                         "familyPart": "Gayaudon",
-                                        "fullText": "Fran\u00e7ois Gayaudon",
-                                        "givenPart": "Fran\u00e7ois",
+                                        "fullText": "François Gayaudon",
+                                        "givenPart": "François",
                                         "lang": "x-Latn",
                                         "prefixPart": null,
-                                        "script": "ROMAN",
                                         "suffixPart": null
                                     }
                                 ],
@@ -50,35 +42,33 @@
                             "type": "NAME"
                         },
                         "noteCount": 0,
-                        "obsoleteIdWasRequested": false,
-                        "portraitUrl": null,
+                        "portraitUrl": "https://tree-portraits-pgp.familysearchcdn.org/vpvy2/thumb200s.jpg",
                         "principlePerson": true,
                         "readOnly": false,
-                        "relationshipId": "MTMG-6CJ",
-                        "sourceCount": 6,
-                        "spaceId": "MMMM-MMM",
-                        "suggestions": null,
-                        "visibleToAll": true
+                        "size": "SUMMARY",
+                        "skeleton": false,
+                        "sourceCount": 7,
+                        "treeType": "PUBLIC",
+                        "visibleToAll": true,
+                        "visibleToAllWhenUsingFamilySearchApps": true
                     },
-                    {
+                    "eclipsesAnotherRelationship": false,
+                    "lineageConclusions": [],
+                    "relationshipId": "MTMG-6CJ"
+                },
+                {
+                    "child": {
+                        "collaborateCount": 0,
+                        "deleted": false,
                         "discussionCount": 0,
-                        "dismissedSuggestions": {
-                            "dataQualityList": null,
-                            "empty": true,
-                            "researchSuggestionList": null
-                        },
-                        "eclipsesAnotherRelationship": false,
                         "gender": "MALE",
+                        "hasMultipleFamiliesAsChild": false,
+                        "hasMultipleFamiliesAsParent": false,
+                        "hasSpouseOrChildren": false,
                         "id": "LBQM-1Z3",
-                        "inPrivateSpace": false,
-                        "isDeleted": false,
-                        "isLiving": false,
-                        "lifeSpan": "1868\u2013D\u00e9c\u00e9d\u00e9",
-                        "lifeSpanDates": "",
-                        "lifespanBegin": 2403333,
-                        "lifespanEnd": 0,
-                        "lineageConclusions": [],
+                        "lifespan": "1868–Décédé",
                         "living": false,
+                        "memoryCount": 0,
                         "name": "Antoine GAYAUDON",
                         "nameConclusion": {
                             "contributor": null,
@@ -92,7 +82,6 @@
                                         "givenPart": "Antoine",
                                         "lang": "fr",
                                         "prefixPart": null,
-                                        "script": "FRENCH",
                                         "suffixPart": null
                                     }
                                 ],
@@ -107,49 +96,45 @@
                             "type": "NAME"
                         },
                         "noteCount": 0,
-                        "obsoleteIdWasRequested": false,
-                        "portraitUrl": null,
                         "principlePerson": false,
                         "readOnly": false,
-                        "relationshipId": "9SC7-BY3",
+                        "size": "SUMMARY",
+                        "skeleton": false,
                         "sourceCount": 0,
-                        "spaceId": "MMMM-MMM",
-                        "suggestions": null,
-                        "visibleToAll": true
+                        "treeType": "PUBLIC",
+                        "visibleToAll": true,
+                        "visibleToAllWhenUsingFamilySearchApps": true
                     },
-                    {
+                    "eclipsesAnotherRelationship": false,
+                    "lineageConclusions": [],
+                    "relationshipId": "9SC7-BY3"
+                },
+                {
+                    "child": {
+                        "collaborateCount": 0,
+                        "deleted": false,
                         "discussionCount": 0,
-                        "dismissedSuggestions": {
-                            "dataQualityList": null,
-                            "empty": true,
-                            "researchSuggestionList": null
-                        },
-                        "eclipsesAnotherRelationship": false,
                         "gender": "FEMALE",
+                        "hasMultipleFamiliesAsChild": false,
+                        "hasMultipleFamiliesAsParent": false,
+                        "hasSpouseOrChildren": false,
                         "id": "LBQM-YVT",
-                        "inPrivateSpace": false,
-                        "isDeleted": false,
-                        "isLiving": false,
-                        "lifeSpan": "1870\u20131870",
-                        "lifeSpanDates": "",
-                        "lifespanBegin": 2404064,
-                        "lifespanEnd": 2404064,
-                        "lineageConclusions": [],
+                        "lifespan": "1870–1870",
                         "living": false,
-                        "name": "Jos\u00e9phine Gayaudon",
+                        "memoryCount": 0,
+                        "name": "Joséphine Gayaudon",
                         "nameConclusion": {
                             "contributor": null,
                             "details": {
                                 "detailsType": "NameDetails",
-                                "fullText": "Jos\u00e9phine Gayaudon",
+                                "fullText": "Joséphine Gayaudon",
                                 "nameForms": [
                                     {
                                         "familyPart": "Gayaudon",
-                                        "fullText": "Jos\u00e9phine Gayaudon",
-                                        "givenPart": "Jos\u00e9phine",
+                                        "fullText": "Joséphine Gayaudon",
+                                        "givenPart": "Joséphine",
                                         "lang": "fr",
                                         "prefixPart": null,
-                                        "script": "FRENCH",
                                         "suffixPart": null
                                     }
                                 ],
@@ -164,35 +149,32 @@
                             "type": "NAME"
                         },
                         "noteCount": 0,
-                        "obsoleteIdWasRequested": false,
-                        "portraitUrl": null,
                         "principlePerson": false,
                         "readOnly": false,
-                        "relationshipId": "9SC7-FXB",
+                        "size": "SUMMARY",
+                        "skeleton": false,
                         "sourceCount": 0,
-                        "spaceId": "MMMM-MMM",
-                        "suggestions": null,
-                        "visibleToAll": true
+                        "treeType": "PUBLIC",
+                        "visibleToAll": true,
+                        "visibleToAllWhenUsingFamilySearchApps": true
                     },
-                    {
+                    "eclipsesAnotherRelationship": false,
+                    "lineageConclusions": [],
+                    "relationshipId": "9SC7-FXB"
+                },
+                {
+                    "child": {
+                        "collaborateCount": 0,
+                        "deleted": false,
                         "discussionCount": 0,
-                        "dismissedSuggestions": {
-                            "dataQualityList": null,
-                            "empty": true,
-                            "researchSuggestionList": null
-                        },
-                        "eclipsesAnotherRelationship": false,
                         "gender": "MALE",
+                        "hasMultipleFamiliesAsChild": false,
+                        "hasMultipleFamiliesAsParent": false,
+                        "hasSpouseOrChildren": false,
                         "id": "LBQ9-95S",
-                        "inPrivateSpace": false,
-                        "isDeleted": false,
-                        "isLiving": false,
-                        "lifeSpan": "1872\u20131935",
-                        "lifeSpanDates": "",
-                        "lifespanBegin": 2404794,
-                        "lifespanEnd": 2427804,
-                        "lineageConclusions": [],
+                        "lifespan": "1872–1935",
                         "living": false,
+                        "memoryCount": 0,
                         "name": "Louis Paul GAYAUDON",
                         "nameConclusion": {
                             "contributor": null,
@@ -206,7 +188,6 @@
                                         "givenPart": "Louis Paul",
                                         "lang": "fr",
                                         "prefixPart": null,
-                                        "script": "FRENCH",
                                         "suffixPart": null
                                     }
                                 ],
@@ -221,35 +202,32 @@
                             "type": "NAME"
                         },
                         "noteCount": 0,
-                        "obsoleteIdWasRequested": false,
-                        "portraitUrl": null,
                         "principlePerson": false,
                         "readOnly": false,
-                        "relationshipId": "9SC7-JJG",
+                        "size": "SUMMARY",
+                        "skeleton": false,
                         "sourceCount": 0,
-                        "spaceId": "MMMM-MMM",
-                        "suggestions": null,
-                        "visibleToAll": true
+                        "treeType": "PUBLIC",
+                        "visibleToAll": true,
+                        "visibleToAllWhenUsingFamilySearchApps": true
                     },
-                    {
+                    "eclipsesAnotherRelationship": false,
+                    "lineageConclusions": [],
+                    "relationshipId": "9SC7-JJG"
+                },
+                {
+                    "child": {
+                        "collaborateCount": 0,
+                        "deleted": false,
                         "discussionCount": 0,
-                        "dismissedSuggestions": {
-                            "dataQualityList": null,
-                            "empty": true,
-                            "researchSuggestionList": null
-                        },
-                        "eclipsesAnotherRelationship": false,
                         "gender": "FEMALE",
+                        "hasMultipleFamiliesAsChild": false,
+                        "hasMultipleFamiliesAsParent": false,
+                        "hasSpouseOrChildren": false,
                         "id": "LBQM-GGM",
-                        "inPrivateSpace": false,
-                        "isDeleted": false,
-                        "isLiving": false,
-                        "lifeSpan": "1886\u20131945",
-                        "lifeSpanDates": "",
-                        "lifespanBegin": 2409908,
-                        "lifespanEnd": 2431457,
-                        "lineageConclusions": [],
+                        "lifespan": "1886–1945",
                         "living": false,
+                        "memoryCount": 0,
                         "name": "Marie Emilie GAYAUDON",
                         "nameConclusion": {
                             "contributor": null,
@@ -263,7 +241,6 @@
                                         "givenPart": "Marie Emilie",
                                         "lang": "fr",
                                         "prefixPart": null,
-                                        "script": "FRENCH",
                                         "suffixPart": null
                                     }
                                 ],
@@ -278,181 +255,217 @@
                             "type": "NAME"
                         },
                         "noteCount": 0,
-                        "obsoleteIdWasRequested": false,
-                        "portraitUrl": null,
                         "principlePerson": false,
                         "readOnly": false,
-                        "relationshipId": "9SC7-TWK",
+                        "size": "SUMMARY",
+                        "skeleton": false,
                         "sourceCount": 0,
-                        "spaceId": "MMMM-MMM",
-                        "suggestions": null,
-                        "visibleToAll": true
-                    }
-                ],
-                "coupleId": "L62J-ZY8_L2ZQ-DHZ",
-                "current": true,
-                "dismissedSuggestions": {
-                    "dataQualityList": null,
-                    "empty": true,
-                    "researchSuggestionList": null
-                },
-                "event": {
-                    "formalDate": "+1866-02-12",
-                    "originalDate": "12 f\u00e9vrier 1866",
-                    "originalPlace": "Montboucher, Creuse, Limousin, France",
-                    "placeId": 6829484,
-                    "standardDate": "12 f\u00e9vrier 1866",
-                    "standardPlace": "Montboucher, Creuse, Limousin, France",
+                        "treeType": "PUBLIC",
+                        "visibleToAll": true,
+                        "visibleToAllWhenUsingFamilySearchApps": true
+                    },
+                    "eclipsesAnotherRelationship": false,
+                    "lineageConclusions": [],
+                    "relationshipId": "9SC7-TWK"
+                }
+            ],
+            "childrenCount": 5,
+            "coupleId": "L62J-ZY8_L2ZQ-DHZ",
+            "event": {
+                "contributor": null,
+                "details": {
+                    "detailsType": "EventDetails",
+                    "date": {
+                        "formalText": "+1866-02-12",
+                        "julianDateRange": null,
+                        "localizedText": null,
+                        "modifier": null,
+                        "normalizedText": "12 février 1866",
+                        "originalText": "12 février 1866"
+                    },
+                    "deceasedFlag": null,
+                    "description": null,
+                    "place": {
+                        "geoCode": null,
+                        "id": 6829484,
+                        "localizedText": null,
+                        "normalizedText": "Montboucher, Creuse, France",
+                        "originalText": "Montboucher, Creuse, Limousin, France"
+                    },
+                    "sourceCount": 0,
+                    "title": null,
                     "type": "MARRIAGE"
                 },
-                "relationshipId": "MN1J-C19",
-                "spouse1": {
-                    "discussionCount": 0,
-                    "dismissedSuggestions": {
-                        "dataQualityList": null,
-                        "empty": true,
-                        "researchSuggestionList": null
+                "id": null,
+                "justification": "",
+                "multiValued": false,
+                "type": "MARRIAGE"
+            },
+            "hasChildren": true,
+            "id": "MN1J-C19",
+            "parent1": {
+                "collaborateCount": 0,
+                "deleted": false,
+                "discussionCount": 0,
+                "fullLifespan": "13 décembre 1837 – 18 décembre 1899",
+                "gender": "MALE",
+                "hasMultipleFamiliesAsChild": false,
+                "hasMultipleFamiliesAsParent": false,
+                "hasSpouseOrChildren": false,
+                "id": "L62J-ZY8",
+                "lifespan": "1837–1899",
+                "living": false,
+                "memoryCount": 0,
+                "name": "Pierre GAYAUDON",
+                "nameConclusion": {
+                    "contributor": null,
+                    "details": {
+                        "detailsType": "NameDetails",
+                        "fullText": "Pierre GAYAUDON",
+                        "nameForms": [
+                            {
+                                "familyPart": "GAYAUDON",
+                                "fullText": "Pierre GAYAUDON",
+                                "givenPart": "Pierre",
+                                "lang": "und",
+                                "prefixPart": null,
+                                "suffixPart": null
+                            }
+                        ],
+                        "nameType": "",
+                        "preferredName": true,
+                        "sourceCount": 0,
+                        "style": "EUROTYPIC"
                     },
-                    "gender": "MALE",
-                    "id": "L62J-ZY8",
-                    "inPrivateSpace": false,
-                    "isDeleted": false,
-                    "isLiving": false,
-                    "lifeSpan": "1837\u20131899",
-                    "lifeSpanDates": "",
-                    "lifespanBegin": 2392357,
-                    "lifespanEnd": 2415007,
-                    "living": false,
-                    "name": "Pierre GAYAUDON",
-                    "nameConclusion": {
-                        "contributor": null,
-                        "details": {
-                            "detailsType": "NameDetails",
-                            "fullText": "Pierre GAYAUDON",
-                            "nameForms": [
-                                {
-                                    "familyPart": "GAYAUDON",
-                                    "fullText": "Pierre GAYAUDON",
-                                    "givenPart": "Pierre",
-                                    "lang": "und",
-                                    "prefixPart": null,
-                                    "script": "UNSPECIFIED",
-                                    "suffixPart": null
-                                }
-                            ],
-                            "nameType": "",
-                            "preferredName": true,
-                            "sourceCount": 0,
-                            "style": "EUROTYPIC"
-                        },
-                        "id": null,
-                        "justification": "",
-                        "multiValued": false,
-                        "type": "NAME"
-                    },
-                    "noteCount": 0,
-                    "obsoleteIdWasRequested": false,
-                    "portraitUrl": null,
-                    "principlePerson": false,
-                    "readOnly": false,
-                    "sourceCount": 4,
-                    "spaceId": "MMMM-MMM",
-                    "suggestions": null,
-                    "visibleToAll": true
+                    "id": null,
+                    "justification": "",
+                    "multiValued": false,
+                    "type": "NAME"
                 },
-                "spouse2": {
-                    "discussionCount": 0,
-                    "dismissedSuggestions": {
-                        "dataQualityList": null,
-                        "empty": true,
-                        "researchSuggestionList": null
+                "noteCount": 0,
+                "portraitUrl": "https://tree-portraits-pgp.familysearchcdn.org/zvvy2/thumb200s.jpg",
+                "principlePerson": false,
+                "readOnly": false,
+                "size": "SUMMARY",
+                "skeleton": false,
+                "sourceCount": 5,
+                "treeType": "PUBLIC",
+                "visibleToAll": true,
+                "visibleToAllWhenUsingFamilySearchApps": true
+            },
+            "parent2": {
+                "collaborateCount": 1,
+                "deleted": false,
+                "discussionCount": 1,
+                "fullLifespan": "14 septembre 1847 – Décédée",
+                "gender": "FEMALE",
+                "hasMultipleFamiliesAsChild": false,
+                "hasMultipleFamiliesAsParent": false,
+                "hasSpouseOrChildren": false,
+                "id": "L2ZQ-DHZ",
+                "lifespan": "1847–Décédée",
+                "living": false,
+                "memoryCount": 0,
+                "name": "Marie Faure",
+                "nameConclusion": {
+                    "contributor": null,
+                    "details": {
+                        "detailsType": "NameDetails",
+                        "fullText": "Marie Faure",
+                        "nameForms": [
+                            {
+                                "familyPart": "Faure",
+                                "fullText": "Marie Faure",
+                                "givenPart": "Marie",
+                                "lang": "x-Latn",
+                                "prefixPart": null,
+                                "suffixPart": null
+                            }
+                        ],
+                        "nameType": "",
+                        "preferredName": true,
+                        "sourceCount": 0,
+                        "style": "EUROTYPIC"
                     },
-                    "gender": "FEMALE",
-                    "id": "L2ZQ-DHZ",
-                    "inPrivateSpace": false,
-                    "isDeleted": false,
-                    "isLiving": false,
-                    "lifeSpan": "1847\u2013D\u00e9c\u00e9d\u00e9e",
-                    "lifeSpanDates": "",
-                    "lifespanBegin": 2395919,
-                    "lifespanEnd": 0,
-                    "living": false,
-                    "name": "Marie Faure",
-                    "nameConclusion": {
-                        "contributor": null,
-                        "details": {
-                            "detailsType": "NameDetails",
-                            "fullText": "Marie Faure",
-                            "nameForms": [
-                                {
-                                    "familyPart": "Faure",
-                                    "fullText": "Marie Faure",
-                                    "givenPart": "Marie",
-                                    "lang": "x-Latn",
-                                    "prefixPart": null,
-                                    "script": "ROMAN",
-                                    "suffixPart": null
-                                }
-                            ],
-                            "nameType": "",
-                            "preferredName": true,
-                            "sourceCount": 0,
-                            "style": "EUROTYPIC"
-                        },
-                        "id": null,
-                        "justification": "",
-                        "multiValued": false,
-                        "type": "NAME"
-                    },
-                    "noteCount": 0,
-                    "obsoleteIdWasRequested": false,
-                    "portraitUrl": null,
-                    "principlePerson": false,
-                    "readOnly": false,
-                    "sourceCount": 4,
-                    "spaceId": "MMMM-MMM",
-                    "suggestions": null,
-                    "visibleToAll": true
+                    "id": null,
+                    "justification": "",
+                    "multiValued": false,
+                    "type": "NAME"
                 },
-                "suggestions": null
-            }
-        ],
-        "spouses": [
-            {
-                "children": [
-                    {
+                "noteCount": 0,
+                "portraitUrl": "https://tree-portraits-pgp.familysearchcdn.org/5vvy2/thumb200s.jpg",
+                "principlePerson": false,
+                "readOnly": false,
+                "size": "SUMMARY",
+                "skeleton": false,
+                "sourceCount": 5,
+                "treeType": "PUBLIC",
+                "visibleToAll": true,
+                "visibleToAllWhenUsingFamilySearchApps": true
+            },
+            "preferred": true
+        }
+    ],
+    "researchHelp": {
+        "couples": {
+            "dataQualityList": null,
+            "empty": false,
+            "researchSuggestionList": [
+                {
+                    "category": "RESEARCH_SUGGESTION",
+                    "contextId": null,
+                    "entityId": "MXZZ-6WW",
+                    "type": {
+                        "canBeDismissed": true,
+                        "category": "RESEARCH_SUGGESTION",
+                        "context": "COUPLE",
+                        "name": "POSSIBLE_CHILD_GAP_AT_END"
+                    }
+                },
+                {
+                    "category": "RESEARCH_SUGGESTION",
+                    "contextId": null,
+                    "entityId": "MXZZ-6WW",
+                    "type": {
+                        "canBeDismissed": true,
+                        "category": "RESEARCH_SUGGESTION",
+                        "context": "COUPLE",
+                        "name": "POSSIBLE_CHILD_GAP_IN_MIDDLE"
+                    }
+                }
+            ]
+        }
+    },
+    "spouses": [
+        {
+            "children": [
+                {
+                    "child": {
+                        "collaborateCount": 0,
+                        "deleted": false,
                         "discussionCount": 0,
-                        "dismissedSuggestions": {
-                            "dataQualityList": null,
-                            "empty": true,
-                            "researchSuggestionList": null
-                        },
-                        "eclipsesAnotherRelationship": false,
+                        "fullLifespan": "17 novembre 1896 – 1898",
                         "gender": "FEMALE",
+                        "hasMultipleFamiliesAsChild": false,
+                        "hasMultipleFamiliesAsParent": false,
+                        "hasSpouseOrChildren": false,
                         "id": "L51J-VFZ",
-                        "inPrivateSpace": false,
-                        "isDeleted": false,
-                        "isLiving": false,
-                        "lifeSpan": "1896\u20131898",
-                        "lifeSpanDates": "",
-                        "lifespanBegin": 2413881,
-                        "lifespanEnd": 2414291,
-                        "lineageConclusions": [],
+                        "lifespan": "1896–1898",
                         "living": false,
-                        "name": "Ren\u00e9e Louise Gayaudon",
+                        "memoryCount": 0,
+                        "name": "Renée Louise Gayaudon",
                         "nameConclusion": {
                             "contributor": null,
                             "details": {
                                 "detailsType": "NameDetails",
-                                "fullText": "Ren\u00e9e Louise Gayaudon",
+                                "fullText": "Renée Louise Gayaudon",
                                 "nameForms": [
                                     {
                                         "familyPart": "Gayaudon",
-                                        "fullText": "Ren\u00e9e Louise Gayaudon",
-                                        "givenPart": "Ren\u00e9e Louise",
+                                        "fullText": "Renée Louise Gayaudon",
+                                        "givenPart": "Renée Louise",
                                         "lang": "und",
                                         "prefixPart": null,
-                                        "script": "UNSPECIFIED",
                                         "suffixPart": null
                                     }
                                 ],
@@ -467,35 +480,33 @@
                             "type": "NAME"
                         },
                         "noteCount": 0,
-                        "obsoleteIdWasRequested": false,
-                        "portraitUrl": null,
                         "principlePerson": false,
                         "readOnly": false,
-                        "relationshipId": "MB6R-ZSK",
+                        "size": "SUMMARY",
+                        "skeleton": false,
                         "sourceCount": 2,
-                        "spaceId": "MMMM-MMM",
-                        "suggestions": null,
-                        "visibleToAll": true
+                        "treeType": "PUBLIC",
+                        "visibleToAll": true,
+                        "visibleToAllWhenUsingFamilySearchApps": true
                     },
-                    {
+                    "eclipsesAnotherRelationship": false,
+                    "lineageConclusions": [],
+                    "relationshipId": "MB6R-ZSK"
+                },
+                {
+                    "child": {
+                        "collaborateCount": 0,
+                        "deleted": false,
                         "discussionCount": 0,
-                        "dismissedSuggestions": {
-                            "dataQualityList": null,
-                            "empty": true,
-                            "researchSuggestionList": null
-                        },
-                        "eclipsesAnotherRelationship": false,
+                        "fullLifespan": "30 décembre 1898 – 18 juillet 1956",
                         "gender": "MALE",
+                        "hasMultipleFamiliesAsChild": false,
+                        "hasMultipleFamiliesAsParent": false,
+                        "hasSpouseOrChildren": false,
                         "id": "LJLG-NLK",
-                        "inPrivateSpace": false,
-                        "isDeleted": false,
-                        "isLiving": false,
-                        "lifeSpan": "1898\u20131956",
-                        "lifeSpanDates": "",
-                        "lifespanBegin": 2414654,
-                        "lifespanEnd": 2435673,
-                        "lineageConclusions": [],
+                        "lifespan": "1898–1956",
                         "living": false,
+                        "memoryCount": 0,
                         "name": "Marcel Louis Pierre GAYAUDON",
                         "nameConclusion": {
                             "contributor": null,
@@ -509,7 +520,6 @@
                                         "givenPart": "Marcel Louis Pierre",
                                         "lang": "und",
                                         "prefixPart": null,
-                                        "script": "UNSPECIFIED",
                                         "suffixPart": null
                                     }
                                 ],
@@ -524,35 +534,33 @@
                             "type": "NAME"
                         },
                         "noteCount": 0,
-                        "obsoleteIdWasRequested": false,
-                        "portraitUrl": null,
                         "principlePerson": false,
                         "readOnly": false,
-                        "relationshipId": "MP41-2R1",
+                        "size": "SUMMARY",
+                        "skeleton": false,
                         "sourceCount": 3,
-                        "spaceId": "MMMM-MMM",
-                        "suggestions": null,
-                        "visibleToAll": true
+                        "treeType": "PUBLIC",
+                        "visibleToAll": true,
+                        "visibleToAllWhenUsingFamilySearchApps": true
                     },
-                    {
+                    "eclipsesAnotherRelationship": false,
+                    "lineageConclusions": [],
+                    "relationshipId": "MP41-2R1"
+                },
+                {
+                    "child": {
+                        "collaborateCount": 0,
+                        "deleted": false,
                         "discussionCount": 0,
-                        "dismissedSuggestions": {
-                            "dataQualityList": null,
-                            "empty": true,
-                            "researchSuggestionList": null
-                        },
-                        "eclipsesAnotherRelationship": false,
+                        "fullLifespan": "30 mai 1903 – 27 décembre 1978",
                         "gender": "FEMALE",
+                        "hasMultipleFamiliesAsChild": false,
+                        "hasMultipleFamiliesAsParent": false,
+                        "hasSpouseOrChildren": false,
                         "id": "KPHK-N9X",
-                        "inPrivateSpace": false,
-                        "isDeleted": false,
-                        "isLiving": false,
-                        "lifeSpan": "1903\u20131978",
-                        "lifeSpanDates": "",
-                        "lifespanBegin": 2416265,
-                        "lifespanEnd": 2443870,
-                        "lineageConclusions": [],
+                        "lifespan": "1903–1978",
                         "living": false,
+                        "memoryCount": 0,
                         "name": "Marguerite, Berthe, Louise Gayaudon",
                         "nameConclusion": {
                             "contributor": null,
@@ -566,7 +574,6 @@
                                         "givenPart": "Marguerite, Berthe, Louise",
                                         "lang": "und",
                                         "prefixPart": null,
-                                        "script": "UNSPECIFIED",
                                         "suffixPart": null
                                     }
                                 ],
@@ -581,35 +588,34 @@
                             "type": "NAME"
                         },
                         "noteCount": 0,
-                        "obsoleteIdWasRequested": false,
-                        "portraitUrl": null,
+                        "portraitUrl": "https://tree-portraits-pgp.familysearchcdn.org/vt6jd/thumb200s.jpg",
                         "principlePerson": false,
                         "readOnly": false,
-                        "relationshipId": "MKY6-3RL",
+                        "size": "SUMMARY",
+                        "skeleton": false,
                         "sourceCount": 6,
-                        "spaceId": "MMMM-MMM",
-                        "suggestions": null,
-                        "visibleToAll": true
+                        "treeType": "PUBLIC",
+                        "visibleToAll": true,
+                        "visibleToAllWhenUsingFamilySearchApps": true
                     },
-                    {
+                    "eclipsesAnotherRelationship": false,
+                    "lineageConclusions": [],
+                    "relationshipId": "MKY6-3RL"
+                },
+                {
+                    "child": {
+                        "collaborateCount": 0,
+                        "deleted": false,
                         "discussionCount": 0,
-                        "dismissedSuggestions": {
-                            "dataQualityList": null,
-                            "empty": true,
-                            "researchSuggestionList": null
-                        },
-                        "eclipsesAnotherRelationship": false,
+                        "fullLifespan": "22 juin 1905 – 28 décembre 1980",
                         "gender": "MALE",
+                        "hasMultipleFamiliesAsChild": false,
+                        "hasMultipleFamiliesAsParent": false,
+                        "hasSpouseOrChildren": false,
                         "id": "G45M-K6V",
-                        "inPrivateSpace": false,
-                        "isDeleted": false,
-                        "isLiving": false,
-                        "lifeSpan": "1905\u20131980",
-                        "lifeSpanDates": "",
-                        "lifespanBegin": 2417019,
-                        "lifespanEnd": 2444602,
-                        "lineageConclusions": [],
+                        "lifespan": "1905–1980",
                         "living": false,
+                        "memoryCount": 0,
                         "name": "Jean Gayaudon",
                         "nameConclusion": {
                             "contributor": null,
@@ -623,7 +629,6 @@
                                         "givenPart": "Jean",
                                         "lang": "fr",
                                         "prefixPart": null,
-                                        "script": "FRENCH",
                                         "suffixPart": null
                                     }
                                 ],
@@ -638,174 +643,162 @@
                             "type": "NAME"
                         },
                         "noteCount": 0,
-                        "obsoleteIdWasRequested": false,
-                        "portraitUrl": null,
+                        "portraitUrl": "https://tree-portraits-pgp.familysearchcdn.org/dq6jd/thumb200s.jpg",
                         "principlePerson": false,
                         "readOnly": false,
-                        "relationshipId": "96B7-YNH",
+                        "size": "SUMMARY",
+                        "skeleton": false,
                         "sourceCount": 2,
-                        "spaceId": "MMMM-MMM",
-                        "suggestions": null,
-                        "visibleToAll": true
-                    }
-                ],
-                "coupleId": "L62N-WQ4_L62N-WW1",
-                "current": true,
-                "dismissedSuggestions": {
-                    "dataQualityList": null,
-                    "empty": true,
-                    "researchSuggestionList": null
-                },
-                "event": {
-                    "formalDate": "+1895-03-31",
-                    "originalDate": "31 mars 1895",
-                    "originalPlace": "Paris, \u00cele-de-France, France",
-                    "placeId": 442102,
-                    "standardDate": "31 mars 1895",
-                    "standardPlace": "Paris, \u00cele-de-France, France",
+                        "treeType": "PUBLIC",
+                        "visibleToAll": true,
+                        "visibleToAllWhenUsingFamilySearchApps": true
+                    },
+                    "eclipsesAnotherRelationship": false,
+                    "lineageConclusions": [],
+                    "relationshipId": "96B7-YNH"
+                }
+            ],
+            "childrenCount": 4,
+            "coupleId": "L62N-WQ4_L62N-WW1",
+            "event": {
+                "contributor": null,
+                "details": {
+                    "detailsType": "EventDetails",
+                    "date": {
+                        "formalText": "+1895-03-31",
+                        "julianDateRange": null,
+                        "localizedText": null,
+                        "modifier": null,
+                        "normalizedText": "31 mars 1895",
+                        "originalText": "31 mars 1895"
+                    },
+                    "deceasedFlag": null,
+                    "description": null,
+                    "place": {
+                        "geoCode": null,
+                        "id": 442102,
+                        "localizedText": null,
+                        "normalizedText": "Paris, France",
+                        "originalText": "Paris, Île-de-France, France"
+                    },
+                    "sourceCount": 0,
+                    "title": null,
                     "type": "MARRIAGE"
                 },
-                "relationshipId": "MXZZ-6WW",
-                "spouse1": {
-                    "discussionCount": 0,
-                    "dismissedSuggestions": {
-                        "dataQualityList": null,
-                        "empty": true,
-                        "researchSuggestionList": null
+                "id": null,
+                "justification": "",
+                "multiValued": false,
+                "type": "MARRIAGE"
+            },
+            "hasChildren": true,
+            "id": "MXZZ-6WW",
+            "parent1": {
+                "collaborateCount": 0,
+                "deleted": false,
+                "discussionCount": 0,
+                "fullLifespan": "30 novembre 1866 – 1929",
+                "gender": "MALE",
+                "hasMultipleFamiliesAsChild": false,
+                "hasMultipleFamiliesAsParent": false,
+                "hasSpouseOrChildren": false,
+                "id": "L62N-WQ4",
+                "lifespan": "1866–1929",
+                "living": false,
+                "memoryCount": 0,
+                "name": "François Gayaudon",
+                "nameConclusion": {
+                    "contributor": {
+                        "date": "30 mars 2014",
+                        "dateMs": 1396196592682,
+                        "id": "MM1N-W6R",
+                        "name": "Mikaël Mayer",
+                        "timestamp": "2014-03-30T16:23:12+00:00"
                     },
-                    "gender": "MALE",
-                    "id": "L62N-WQ4",
-                    "inPrivateSpace": false,
-                    "isDeleted": false,
-                    "isLiving": false,
-                    "lifeSpan": "1866\u20131929",
-                    "lifeSpanDates": "",
-                    "lifespanBegin": 2402936,
-                    "lifespanEnd": 2425613,
-                    "living": false,
-                    "name": "Fran\u00e7ois Gayaudon",
-                    "nameConclusion": {
-                        "contributor": null,
-                        "details": {
-                            "detailsType": "NameDetails",
-                            "fullText": "Fran\u00e7ois Gayaudon",
-                            "nameForms": [
-                                {
-                                    "familyPart": "Gayaudon",
-                                    "fullText": "Fran\u00e7ois Gayaudon",
-                                    "givenPart": "Fran\u00e7ois",
-                                    "lang": "x-Latn",
-                                    "prefixPart": null,
-                                    "script": "ROMAN",
-                                    "suffixPart": null
-                                }
-                            ],
-                            "nameType": "",
-                            "preferredName": true,
-                            "sourceCount": 2,
-                            "style": "EUROTYPIC"
-                        },
-                        "id": null,
-                        "justification": "",
-                        "multiValued": false,
-                        "type": "NAME"
-                    },
-                    "noteCount": 0,
-                    "obsoleteIdWasRequested": false,
-                    "portraitUrl": null,
-                    "principlePerson": true,
-                    "readOnly": false,
-                    "sourceCount": 6,
-                    "spaceId": "MMMM-MMM",
-                    "suggestions": null,
-                    "visibleToAll": true
-                },
-                "spouse2": {
-                    "discussionCount": 0,
-                    "dismissedSuggestions": {
-                        "dataQualityList": null,
-                        "empty": true,
-                        "researchSuggestionList": null
-                    },
-                    "gender": "FEMALE",
-                    "id": "L62N-WW1",
-                    "inPrivateSpace": false,
-                    "isDeleted": false,
-                    "isLiving": false,
-                    "lifeSpan": "1871\u20131935",
-                    "lifeSpanDates": "",
-                    "lifespanBegin": 2404701,
-                    "lifespanEnd": 2427804,
-                    "living": false,
-                    "name": "Marie-Ad\u00e8le CHAUNIER",
-                    "nameConclusion": {
-                        "contributor": null,
-                        "details": {
-                            "detailsType": "NameDetails",
-                            "fullText": "Marie-Ad\u00e8le CHAUNIER",
-                            "nameForms": [
-                                {
-                                    "familyPart": "CHAUNIER",
-                                    "fullText": "Marie-Ad\u00e8le CHAUNIER",
-                                    "givenPart": "Marie-Ad\u00e8le",
-                                    "lang": "und",
-                                    "prefixPart": null,
-                                    "script": "UNSPECIFIED",
-                                    "suffixPart": null
-                                }
-                            ],
-                            "nameType": "",
-                            "preferredName": true,
-                            "sourceCount": 0,
-                            "style": "EUROTYPIC"
-                        },
-                        "id": null,
-                        "justification": "",
-                        "multiValued": false,
-                        "type": "NAME"
-                    },
-                    "noteCount": 0,
-                    "obsoleteIdWasRequested": false,
-                    "portraitUrl": null,
-                    "principlePerson": false,
-                    "readOnly": false,
-                    "sourceCount": 5,
-                    "spaceId": "MMMM-MMM",
-                    "suggestions": null,
-                    "visibleToAll": true
-                },
-                "suggestions": {
-                    "dataQualityList": null,
-                    "empty": false,
-                    "researchSuggestionList": [
-                        {
-                            "category": "RESEARCH_SUGGESTION",
-                            "contextId": null,
-                            "entityId": "MXZZ-6WW",
-                            "type": {
-                                "canBeDismissed": true,
-                                "category": "RESEARCH_SUGGESTION",
-                                "context": "COUPLE",
-                                "name": "POSSIBLE_CHILD_GAP_AT_END"
+                    "details": {
+                        "detailsType": "NameDetails",
+                        "fullText": "François Gayaudon",
+                        "nameForms": [
+                            {
+                                "familyPart": "Gayaudon",
+                                "fullText": "François Gayaudon",
+                                "givenPart": "François",
+                                "lang": "x-Latn",
+                                "prefixPart": null,
+                                "suffixPart": null
                             }
-                        },
-                        {
-                            "category": "RESEARCH_SUGGESTION",
-                            "contextId": null,
-                            "entityId": "MXZZ-6WW",
-                            "type": {
-                                "canBeDismissed": true,
-                                "category": "RESEARCH_SUGGESTION",
-                                "context": "COUPLE",
-                                "name": "POSSIBLE_CHILD_GAP_IN_MIDDLE"
+                        ],
+                        "nameType": "BIRTH",
+                        "preferredName": true,
+                        "sourceCount": 3,
+                        "style": "EUROTYPIC"
+                    },
+                    "id": "991a0a6e-291e-4f21-a0db-159dd32b100f",
+                    "justification": null,
+                    "multiValued": false,
+                    "type": "NAME"
+                },
+                "noteCount": 0,
+                "portraitUrl": "https://tree-portraits-pgp.familysearchcdn.org/vpvy2/thumb200s.jpg",
+                "principlePerson": true,
+                "readOnly": false,
+                "size": "SUMMARY",
+                "skeleton": false,
+                "sourceCount": 7,
+                "treeType": "PUBLIC",
+                "visibleToAll": true,
+                "visibleToAllWhenUsingFamilySearchApps": true
+            },
+            "parent2": {
+                "collaborateCount": 0,
+                "deleted": false,
+                "discussionCount": 0,
+                "fullLifespan": "30 septembre 1871 – 1935",
+                "gender": "FEMALE",
+                "hasMultipleFamiliesAsChild": false,
+                "hasMultipleFamiliesAsParent": false,
+                "hasSpouseOrChildren": false,
+                "id": "L62N-WW1",
+                "lifespan": "1871–1935",
+                "living": false,
+                "memoryCount": 0,
+                "name": "Marie-Adèle CHAUNIER",
+                "nameConclusion": {
+                    "contributor": null,
+                    "details": {
+                        "detailsType": "NameDetails",
+                        "fullText": "Marie-Adèle CHAUNIER",
+                        "nameForms": [
+                            {
+                                "familyPart": "CHAUNIER",
+                                "fullText": "Marie-Adèle CHAUNIER",
+                                "givenPart": "Marie-Adèle",
+                                "lang": "und",
+                                "prefixPart": null,
+                                "suffixPart": null
                             }
-                        }
-                    ]
-                }
-            }
-        ]
-    },
-    "status": "OK",
-    "statusText": null,
-    "statuses": null
+                        ],
+                        "nameType": "",
+                        "preferredName": true,
+                        "sourceCount": 0,
+                        "style": "EUROTYPIC"
+                    },
+                    "id": null,
+                    "justification": "",
+                    "multiValued": false,
+                    "type": "NAME"
+                },
+                "noteCount": 0,
+                "portraitUrl": "https://tree-portraits-pgp.familysearchcdn.org/gwvy2/thumb200s.jpg",
+                "principlePerson": false,
+                "readOnly": false,
+                "size": "SUMMARY",
+                "skeleton": false,
+                "sourceCount": 5,
+                "treeType": "PUBLIC",
+                "visibleToAll": true,
+                "visibleToAllWhenUsingFamilySearchApps": true
+            },
+            "preferred": true
+        }
+    ]
 }

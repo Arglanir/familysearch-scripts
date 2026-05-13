@@ -87,6 +87,7 @@ function storeInfoAboutDescendant({depth=0, from='UNKNOWN', infolocal={}, fullin
                 // FIXME: it seems that when there is no spouse, there is no children...
                 for (var j=0; j < fullinfo.spouses[i].children.length; j++) {
                     var child = fullinfo.spouses[i].children[j];
+                    if (child.child) child = child.child;
                     if (!child || !child.id) continue;
                     if (persons[child.id]) continue; // do not analyse
                     persons[child.id] = "called";
@@ -260,5 +261,5 @@ function getKoreanFamilyList({from=getCurrentId(), depthmax=15}={}) {
     familyTreeRecursive({callback:storeInfoAboutPerson, from:from, depthmax:depthmax, callbackEnd:displayListWhenFinished, shareddata:{persons:persons, filename:"anniversaires_coreens.html"}});
 }
 
-//getFamilyList();
-getKoreanFamilyList();
+getFamilyList();
+//getKoreanFamilyList();
